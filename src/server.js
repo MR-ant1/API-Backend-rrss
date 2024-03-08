@@ -1,12 +1,15 @@
 import express from "express"
 import "dotenv/config";
 import { dbconnection } from "./database/db.js";
+import router from "./routes/router.js";
 
 const app = express();
 
 app.use(express.json())
 
 const PORT = process.env.PORT || 4001
+
+app.use("/api", router)
 
 dbconnection()
 .then(() => {
