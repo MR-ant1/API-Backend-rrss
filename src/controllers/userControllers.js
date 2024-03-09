@@ -1,6 +1,7 @@
 
 import User from "../models/User.js";
 import { handleError } from "../utils/handleError.js";
+import bcrypt from "bcrypt"
 
 
 
@@ -59,8 +60,16 @@ export const updateProfile = async (req, res) => {
         const { firstName, lastName, email, password } = req.body;
        
 
+        const passwordEncrypted = bcrypt.hashSync(password, 8)
+
+
         if (!userId) {
             throw new Error("Login to update profile")
+        }
+
+        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        if (!validEmail.test(email)) {
+           throw new Error("Email format is not valid")
         }
             
         const updatedProfile = await User.findByIdAndUpdate(
@@ -71,7 +80,7 @@ export const updateProfile = async (req, res) => {
                firstName,
                lastName,
                email,
-               password
+               password: passwordEncrypted
             },
             {
                 new:true
@@ -85,6 +94,9 @@ export const updateProfile = async (req, res) => {
 
     } catch (error) {
         if (error.message === "Login to update profile") {
+            handleError(res, error.message, 404)
+        }
+        if (error.message === "Email format is not valid") {
             handleError(res, error.message, 400)
         }
         handleError(res, "Cant update profile", 500)
