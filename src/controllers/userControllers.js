@@ -5,8 +5,7 @@ import { handleError } from "../utils/handleError.js";
 export const getUsers = async (req, res) => {
     try {
         const userList = await User.find()
-        .select("-password")
-        //PENDING SHOW BOOK TITLE
+        
         
     if (!userList) {
         throw new Error("There is no users")
