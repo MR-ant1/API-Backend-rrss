@@ -26,3 +26,31 @@ export const getUsers = async (req, res) => {
         handleError(res, "Cant retrieve users", 500)
     }
 }
+
+export const deleteUserById = async (req, res) => {
+
+        try {
+           const userId = req.params._id
+
+        if (!userId) {
+            throw new Error("There is no user with that ID")
+        }
+
+    const deletedUser = await User.findByIdAndDelete(
+        {
+            _id: userId
+        }
+    )
+        res.status(200).json({
+            success: true,
+            message: "User deleted successfully",
+            data: deletedUser
+        })
+        } catch (error) {
+            if (error.message === "There is no user with that ID") {
+                handleError(res, error.message, 404)
+            }
+            handleError(res, "Cant delete user", 500)
+        }
+    
+}
