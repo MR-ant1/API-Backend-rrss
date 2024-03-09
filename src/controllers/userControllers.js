@@ -2,6 +2,8 @@
 import User from "../models/User.js";
 import { handleError } from "../utils/handleError.js";
 
+
+
 export const getUsers = async (req, res) => {
     try {
         const userList = await User.find()
@@ -23,6 +25,69 @@ export const getUsers = async (req, res) => {
             handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve users", 500)
+    }
+}
+
+export const getProfile = async (req, res) => {
+    try {
+
+        const userId = req.tokenData.userId
+       
+        const userProfile = await User.findOne(
+            {
+                _id:userId
+            },
+            {
+                password: false
+            }
+        )
+        
+        res.status(200).json({
+            success: true,
+            message: "Profile retrieved succesfully",
+            data:userProfile
+        })
+
+    } catch (error) {
+        handleError(res, "Cant retrieve users", 500)
+    }
+}
+
+export const updateProfile = async (req, res) => {
+    try {
+        const userId = req.tokenData.userId
+        const { firstName, lastName, email, password } = req.body;
+       
+
+        if (!userId) {
+            throw new Error("Login to update profile")
+        }
+            
+        const updatedProfile = await User.findByIdAndUpdate(
+            {
+                _id: userId
+            },
+            {
+               firstName,
+               lastName,
+               email,
+               password
+            },
+            {
+                new:true
+            }
+        )
+        res.status(200).json({
+            success: true,
+            message: "Profile updated successfully",
+            data: updatedProfile
+        })
+
+    } catch (error) {
+        if (error.message === "Login to update profile") {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "Cant update profile", 500)
     }
 }
 
