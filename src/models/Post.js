@@ -1,35 +1,26 @@
 import { Schema, model } from "mongoose";
 
-const UserSchema = new Schema(
+const postSchema = new Schema(
     {
-        firstName: {
+        title: {
             type: String,
             required: true
         },
-        lastName: {
+        description: {
             type: String,
             required: false
         },
-        email: {
-            type: String,
-            required: true,
-            unique: true
-        },
-        password: {
+        userId: {
             type: String,
             required: true
         },
-        role: {
-            type: String,
-            enum: ["user", "admin", "super_admin"],
-            default: "user"
-        },
-       likedPosts: [
+        likes: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Post'
             }
         ]
+        
     },
     {
         timestamps: true,
@@ -37,5 +28,5 @@ const UserSchema = new Schema(
     }
 )
 
-const User = model ("User", UserSchema)
-export default User
+const Post = model ("Post", postSchema)
+export default Post
