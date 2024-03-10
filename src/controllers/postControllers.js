@@ -17,7 +17,7 @@ export const getPosts = async (req, res) => {
     })
     } catch (error) {
         if (error.message === "There is no posts yet") {
-            handleError(res, error.message, 400)
+            handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500)
     }
@@ -45,7 +45,34 @@ export const getPostById = async (req, res) => {
         })
     } catch (error) {
         if (error.message === "Post not found") {
-            handleError(res, error.message, 400)
+            handleError(res, error.message, 404)
+        }
+        handleError(res, "Cant retrieve posts", 500)
+    }
+}
+
+export const getOwnPosts = async (req, res) => {
+    try {
+
+        const userId = req.tokenData.userId
+        const ownPosts = await Post.find(
+            {
+                userId:userId
+            }
+            )
+
+        if(ownPosts.length === 0) {
+            throw new Error("You dont have any posts yet")
+        }
+    
+        res.status(200).json({
+            success: true,
+            message: "Posts retrieved successfully",
+            data: ownPosts
+        })
+    } catch (error) {
+        if (error.message === "You dont have any posts yet") {
+            handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500)
     }
