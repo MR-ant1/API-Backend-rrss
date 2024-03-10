@@ -145,24 +145,18 @@ export const createPost = async (req, res) => {
 export const updatePostById = async (req,res) => {
 
     try {
-       const userId = req.tokenData.userId 
-       const postId = req.body.postId 
+       const userUpdating = req.tokenData.userId 
+       const postId = req.body.postId
        const {title, description} = req.body
 
        if(!postId) {
         throw new Error("You need to choose one post to edit!")
        }
-       if (!title) {
-        throw new Error("Title field is mandatory")
-        }
-        if (userId !== req.tokenData.userId) {
-            throw new Error("You only can update your own posts")
-        }
 
         const updatedPost = await Post.findOneAndUpdate(
             {
                 _id:postId,
-                userId:userId
+                userId:userUpdating
 
             },
             {
@@ -173,6 +167,9 @@ export const updatePostById = async (req,res) => {
                 new: true
             }
         )
+        if (updatedPost === null) {
+            throw new Error("You cant update another users post")
+        }
 
         res.status(200).json({
             successs: true,
@@ -183,10 +180,7 @@ export const updatePostById = async (req,res) => {
         if (error.message === "You need to choose one post to edit!") {
             handleError(res, error.message, 400)
         }
-        if (error.message === "Title field is mandatory") {
-            handleError(res, error.message, 400)
-        }
-        if (error.message === "You only can update your own posts") {
+        if (error.message === "You cant update another users post") {
             handleError(res, error.message, 400)
         }
         handleError(res, "Cant update post", 500)
