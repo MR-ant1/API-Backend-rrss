@@ -24,6 +24,33 @@ export const getPosts = async (req, res) => {
     
 }
 
+export const getPostById = async (req, res) => {
+    try {
+
+        const postId = req.params._id
+        const postsById = await Post.findOne(
+            {
+                _id:postId
+            }
+        )
+
+        if(!postsById) {
+            throw new Error("Post not found")
+        }
+    
+        res.status(200).json({
+            success: true,
+            message: "Post retrieved successfully",
+            data: postsById
+        })
+    } catch (error) {
+        if (error.message === "Post not found") {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "Cant retrieve posts", 500)
+    }
+}
+
 export const createPost = async (req, res) => {
     try {
         
