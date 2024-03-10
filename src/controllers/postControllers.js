@@ -2,7 +2,7 @@ import { handleError } from "../utils/handleError.js";
 import Post from "../models/Post.js"
 
 
-export const getPosts = async (req, res) => {
+export const getAllPosts = async (req, res) => {
     try {
         const postsList = await Post.find()
 
@@ -62,7 +62,7 @@ export const getOwnPosts = async (req, res) => {
             )
 
         if(ownPosts.length === 0) {
-            throw new Error("You dont have any posts yet")
+            throw new Error("You dont have any posts yet") //ME CRASHEA SERVER SI NO HAY POSTS
         }
     
         res.status(200).json({
@@ -75,6 +75,33 @@ export const getOwnPosts = async (req, res) => {
             handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500)
+    }
+}
+
+
+export const getOtherUserPosts = async (req, res) => {
+    try {
+        const userId = req.params.userId
+        const otherUserPosts= await Post.find(
+            {
+                userId
+            }
+        )
+
+        if(otherUserPosts.length === 0) {
+            throw new Error("This user doesnt have any post yet")
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "User's post retrieved successfully",
+            data: otherUserPosts
+        })
+    } catch (error) {
+        if (error.message === "This user doesnt have any post yet") {
+            handleError(res, error.message, 404)
+        }
+        handleError(res, "Cant retrieve posts", 500) 
     }
 }
 
@@ -112,5 +139,56 @@ export const createPost = async (req, res) => {
             handleError(res, error.message, 400)
         }
         handleError(res, "Cant create post", 500)
+    }
+}
+
+export const updatePostById = async (req,res) => {
+
+    try {
+       const userId = req.tokenData.userId 
+       const postId = req.body.postId 
+       const {title, description} = req.body
+
+       if(!postId) {
+        throw new Error("You need to choose one post to edit!")
+       }
+       if (!title) {
+        throw new Error("Title field is mandatory")
+        }
+        if (userId !== req.tokenData.userId) {
+            throw new Error("You only can update your own posts")
+        }
+
+        const updatedPost = await Post.findOneAndUpdate(
+            {
+                _id:postId,
+                userId:userId
+
+            },
+            {
+                title,
+                description
+            },
+            {
+                new: true
+            }
+        )
+
+        res.status(200).json({
+            successs: true,
+            messsage: "Post updated successfully",
+            data:updatedPost
+        })
+    } catch (error) {
+        if (error.message === "You need to choose one post to edit!") {
+            handleError(res, error.message, 400)
+        }
+        if (error.message === "Title field is mandatory") {
+            handleError(res, error.message, 400)
+        }
+        if (error.message === "You only can update your own posts") {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "Cant update post", 500)
     }
 }
