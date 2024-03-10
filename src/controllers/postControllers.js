@@ -2,6 +2,28 @@ import { handleError } from "../utils/handleError.js";
 import Post from "../models/Post.js"
 
 
+export const getPosts = async (req, res) => {
+    try {
+        const postsList = await Post.find()
+
+    if(!postsList) {
+        throw new Error("There is no posts yet")
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "Posts retrieved successfully",
+        data: postsList
+    })
+    } catch (error) {
+        if (error.message === "There is no posts yet") {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "Cant retrieve posts", 500)
+    }
+    
+}
+
 export const createPost = async (req, res) => {
     try {
         
@@ -9,7 +31,7 @@ export const createPost = async (req, res) => {
         const { title, description } = req.body;
 
         if (!userId) {
-            throw new Error("User not found")
+            throw new Error("You need to login to create a post")
         }
         if (!title) {
             throw new Error("Title is mandatory")
@@ -29,12 +51,12 @@ export const createPost = async (req, res) => {
             data: newPost
         })
     } catch (error) {
-        if (error.message === "User not found") {
+        if (error.message === "You need to login to create a post") {
             handleError(res, error.message, 404)
         }
         if (error.message === "Title is mandatory") {
             handleError(res, error.message, 400)
         }
-        handleError(res, "Cant retrieve users", 500)
+        handleError(res, "Cant create post", 500)
     }
 }
