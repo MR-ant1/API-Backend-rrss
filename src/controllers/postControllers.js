@@ -220,17 +220,7 @@ export const likeAPost = async (req, res) => {
     try {
         const userId = req.tokenData.userId
         const postId = req.params._id
-
-        const userLiking = await User.findOne(
-            {
-                _id:userId
-            }
-        )
-  
-        userLiking.likedPosts.push(postId)
-        await userLiking.save()
        
-
         const postLiked = await Post.findOne(
             {
                 _id: postId
@@ -239,23 +229,25 @@ export const likeAPost = async (req, res) => {
         if (!postLiked) {
             throw new Error("Post not found")
         }
-          
+        if (postLiked.likes.length === 0) {  
         postLiked.likes.push(userId)
         await postLiked.save()
         console.log(postLiked.likes)
-
-        if (userLiking.likedPosts.includes(postId)) {
-              userLiking.likedPosts.pull(postId)
-        }
-        if (postLiked.likes.includes(userId)) {
-             postLiked.likes.pull(userId)
-        }
-
+        
         res.status(200).json({
             success: true,
             message: "You liked this post!"
-           
         })
+        }
+        if (postLiked.likes.length === 1) {
+            postLiked.likes.pull(userId)
+        }
+
+         res.status(200).json({
+            success: true,
+            message: "Disliked"
+         })  
+       
     } catch (error) {
         console.log(error)
         if (error.message === "Post not found") {

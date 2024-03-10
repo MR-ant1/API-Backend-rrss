@@ -25,12 +25,12 @@ const UserSchema = new Schema(
             enum: ["user", "admin", "super_admin"],
             default: "user"
         },
-       likedPosts: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Post'
-            }
-        ]
+    //    likedPosts: [
+    //         {
+    //             type: Schema.Types.ObjectId,
+    //             ref: 'Post'
+    //         }
+    //     ]
     },
     {
         timestamps: true,
