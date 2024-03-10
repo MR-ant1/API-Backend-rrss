@@ -186,3 +186,32 @@ export const updatePostById = async (req,res) => {
         handleError(res, "Cant update post", 500)
     }
 }
+
+export const deletePostById = async (req, res) => {
+    try {
+        const userUpdating = req.tokenData.userId
+        const postId = req.params._id
+        const deletedPost = await Post.findOneAndDelete(
+            {
+                _id:postId
+            },
+            {
+                userId:userUpdating
+            }
+            )
+        if (!deletedPost) {
+            throw new Error("There isnt a post with this Id")
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Post deleted succesfully",
+            data: deletedPost
+        })
+    } catch (error) {
+        if (error.message === "There isnt a post with this Id") {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "Cant delete post", 500)
+    }
+}
