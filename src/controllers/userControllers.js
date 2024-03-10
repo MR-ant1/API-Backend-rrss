@@ -23,7 +23,7 @@ export const getUsers = async (req, res) => {
 
     } catch (error) {
         if (error.message === "There is no users") {
-            handleError(res, error.message, 404)
+          return handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve users", 500)
     }
@@ -94,10 +94,10 @@ export const updateProfile = async (req, res) => {
 
     } catch (error) {
         if (error.message === "Login to update profile") {
-            handleError(res, error.message, 404)
+           return handleError(res, error.message, 404)
         }
         if (error.message === "Email format is not valid") {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "Cant update profile", 500)
     }
@@ -124,7 +124,7 @@ export const deleteUserById = async (req, res) => {
         })
         } catch (error) {
             if (error.message === "There is no user with that ID") {
-                handleError(res, error.message, 404)
+            return  handleError(res, error.message, 404)
             }
             handleError(res, "Cant delete user", 500)
         }

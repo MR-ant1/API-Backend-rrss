@@ -43,13 +43,13 @@ export const register = async (req, res) => {
     ) 
     } catch (error) {
         if (error.message === "all fields are mandatory") {
-            handleError(res, error.message, 404)
+            return handleError(res, error.message, 404)
         }
         if (error.message === "Password must contain between 8 and 20 characters") {
-            handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === "Format email invalid") {
-            handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "Cant register user", 500)
     }
@@ -110,13 +110,13 @@ export const login = async (req, res) => {
     } catch (error) {
 
         if (error.message === "email and password are mandatories") {
-            handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === "Email format is not valid") {
-            handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === "Email or password invalid") {
-            handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "Cant login", 500)
     }
