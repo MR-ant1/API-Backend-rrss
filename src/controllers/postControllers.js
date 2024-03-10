@@ -17,7 +17,7 @@ export const getAllPosts = async (req, res) => {
     })
     } catch (error) {
         if (error.message === "There is no posts yet") {
-            handleError(res, error.message, 404)
+           return handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500)
     }
@@ -45,7 +45,7 @@ export const getPostById = async (req, res) => {
         })
     } catch (error) {
         if (error.message === "Post not found") {
-            handleError(res, error.message, 404)
+           return handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500)
     }
@@ -72,7 +72,7 @@ export const getOwnPosts = async (req, res) => {
         })
     } catch (error) {
         if (error.message === "You dont have any posts yet") {
-            handleError(res, error.message, 404)
+           return handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500)
     }
@@ -99,7 +99,7 @@ export const getOtherUserPosts = async (req, res) => {
         })
     } catch (error) {
         if (error.message === "This user doesnt have any post yet") {
-            handleError(res, error.message, 404)
+           return handleError(res, error.message, 404)
         }
         handleError(res, "Cant retrieve posts", 500) 
     }
@@ -133,10 +133,10 @@ export const createPost = async (req, res) => {
         })
     } catch (error) {
         if (error.message === "You need to login to create a post") {
-            handleError(res, error.message, 404)
+           return handleError(res, error.message, 404)
         }
         if (error.message === "Title is mandatory") {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "Cant create post", 500)
     }
@@ -178,40 +178,12 @@ export const updatePostById = async (req,res) => {
         })
     } catch (error) {
         if (error.message === "You need to choose one post to edit!") {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         if (error.message === "You cant update another users post") {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "Cant update post", 500)
     }
 }
 
-export const deletePostById = async (req, res) => {
-    try {
-        const userUpdating = req.tokenData.userId
-        const postId = req.params._id
-        const deletedPost = await Post.findOneAndDelete(
-            {
-                _id:postId
-            },
-            {
-                userId:userUpdating
-            }
-            )
-        if (!deletedPost) {
-            throw new Error("There isnt a post with this Id")
-        }
-
-        res.status(200).json({
-            success: true,
-            message: "Post deleted succesfully",
-            data: deletedPost
-        })
-    } catch (error) {
-        if (error.message === "There isnt a post with this Id") {
-            handleError(res, error.message, 400)
-        }
-        handleError(res, "Cant delete post", 500)
-    }
-}
