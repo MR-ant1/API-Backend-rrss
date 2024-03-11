@@ -232,18 +232,22 @@ export const likeAPost = async (req, res) => {
         if (postLiked.likes.length === 0) {  
         postLiked.likes.push(userId)
         await postLiked.save()
-        console.log(postLiked.likes)
         
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "You liked this post!"
         })
         }
-        if (postLiked.likes.length === 1) {
-            postLiked.likes.pull(userId)
+        if (postLiked.likes.includes(userId)) {
+            const idIndex = postLiked.likes.indexOf(userId)
+            if (idIndex > -1) {
+              postLiked.likes.splice(idIndex, 1) 
+              await postLiked.save() 
+            }
+
         }
 
-         res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "Disliked"
          })  
