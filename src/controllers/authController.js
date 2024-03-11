@@ -18,12 +18,12 @@ export const register = async (req, res) => {
         if (password.length < 8 || password.length > 20) {
             throw new Error("Password must contain between 8 and 20 characters")
         }
-    
+
         const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         if (!validEmail.test(email)) {
             throw new Error("Format email invalid")
         }
-    
+
         const encryptedPassword = bcrypt.hashSync(password, 8)
 
         const newUser = await User.create(
@@ -34,13 +34,13 @@ export const register = async (req, res) => {
                 password: encryptedPassword
             }
         )
-       res.status(201).json(
-      {
-        success: true,
-        message: "User registered successfully",
-        data: newUser
-      }
-    ) 
+        res.status(201).json(
+            {
+                success: true,
+                message: "User registered successfully",
+                data: newUser
+            }
+        )
     } catch (error) {
         if (error.message === "all fields are mandatory") {
             return handleError(res, error.message, 404)
@@ -53,7 +53,7 @@ export const register = async (req, res) => {
         }
         handleError(res, "Cant register user", 500)
     }
-    
+
 }
 
 export const login = async (req, res) => {
@@ -62,7 +62,7 @@ export const login = async (req, res) => {
         const password = req.body.password
 
         if (!email || !password) {
-            throw new Error ("email and password are mandatories")
+            throw new Error("email and password are mandatories")
         }
 
         const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -74,10 +74,10 @@ export const login = async (req, res) => {
                 }
             )
         }
-              
+
         const user = await User.findOne(
             {
-                    email: email
+                email: email
             })
 
         if (!user) {
@@ -104,7 +104,7 @@ export const login = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "User logged succesfully",
-            token: token 
+            token: token
         })
 
     } catch (error) {

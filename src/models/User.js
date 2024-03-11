@@ -25,7 +25,7 @@ const UserSchema = new Schema(
             enum: ["user", "admin", "super_admin"],
             default: "user"
         },
-       likedPosts: [
+        likedPosts: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Post'
@@ -38,5 +38,5 @@ const UserSchema = new Schema(
     }
 )
 
-const User = model ("User", UserSchema)
+const User = model("User", UserSchema)
 export default User

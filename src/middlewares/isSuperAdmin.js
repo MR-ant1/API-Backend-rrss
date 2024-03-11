@@ -4,9 +4,9 @@ import { handleError } from "../utils/handleError.js"
 export const isSuperAdmin = (req, res, next) => {
     try {
         if (req.tokenData.role !== "super_admin")
-        throw new Error("Unauthorized")
+            throw new Error("Unauthorized")
 
-        next() 
+        next()
 
     } catch (error) {
         if (error.message === "Unauthorized") {

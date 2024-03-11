@@ -255,11 +255,11 @@ export const likeAPost = async (req, res) => {
             return res.status(200).json({
                 success: true,
                 message: "Disliked"
-    
+
             })
         } else
 
-        postLiked.likes.push(userId)
+            postLiked.likes.push(userId)
         await postLiked.save()
 
 
@@ -268,10 +268,6 @@ export const likeAPost = async (req, res) => {
             message: "Liked and post added to likes"
 
         })
-
-
-
-        
 
     } catch (error) {
         console.log(error)

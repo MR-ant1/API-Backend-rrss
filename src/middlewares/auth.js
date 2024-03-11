@@ -1,4 +1,4 @@
-import  jwt  from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 import { handleError } from "../utils/handleError.js"
 
 export const auth = (req, res, next) => {

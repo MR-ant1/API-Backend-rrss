@@ -13,15 +13,15 @@ const PORT = process.env.PORT || 4002
 app.use("/api", router)
 
 dbconnection()
-.then(() => {
-    console.log("Database connected")
+    .then(() => {
+        console.log("Database connected")
 
 
-app.listen(PORT, () => {
-    console.log(`server is running in port ${PORT}`);
-})
-})
-.catch(error => {
-    console.log(error)
-}
-)
+        app.listen(PORT, () => {
+            console.log(`server is running in port ${PORT}`);
+        })
+    })
+    .catch(error => {
+        console.log(error)
+    }
+    )

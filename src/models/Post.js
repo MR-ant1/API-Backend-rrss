@@ -21,7 +21,7 @@ const postSchema = new Schema(
                 ref: 'Post'
             }
         ]
-        
+
     },
     {
         timestamps: true,
@@ -29,5 +29,5 @@ const postSchema = new Schema(
     }
 )
 
-const Post = model ("Post", postSchema)
+const Post = model("Post", postSchema)
 export default Post
