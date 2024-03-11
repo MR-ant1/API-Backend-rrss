@@ -245,7 +245,7 @@ export const likeAPost = async (req, res) => {
         console.log(postLiked.likes)
 
         if (userLiking.likedPosts.includes(postId)) {
-              userLiking.likedPosts.pull(postId)
+             const idIndex = userLiking.likedPosts.pull(postId)
         }
         if (postLiked.likes.includes(userId)) {
              postLiked.likes.pull(userId)
