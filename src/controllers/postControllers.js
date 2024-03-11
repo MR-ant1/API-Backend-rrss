@@ -223,39 +223,56 @@ export const likeAPost = async (req, res) => {
 
         const userLiking = await User.findOne(
             {
-                _id:userId
+                _id: userId
             }
         )
-  
-        userLiking.likedPosts.push(postId)
+
+        if (userLiking.likedPosts.includes(postId)) {
+            const idIndex = userLiking.likedPosts.indexOf(postId)
+            userLiking.likedPosts.splice(idIndex, 1)
+            await userLiking.save()
+
+        } else
+            userLiking.likedPosts.push(postId)
         await userLiking.save()
-       
+
 
         const postLiked = await Post.findOne(
             {
                 _id: postId
             }
         )
+
         if (!postLiked) {
             throw new Error("Post not found")
         }
-          
+
+        if (postLiked.likes.includes(userId)) {
+            const userIdIndex = postLiked.likes.indexOf(userId)
+            postLiked.likes.splice(userIdIndex, 1)
+            await postLiked.save()
+
+            return res.status(200).json({
+                success: true,
+                message: "Disliked"
+    
+            })
+        } else
+
         postLiked.likes.push(userId)
         await postLiked.save()
-        console.log(postLiked.likes)
 
-        if (userLiking.likedPosts.includes(postId)) {
-             const idIndex = userLiking.likedPosts.pull(postId)
-        }
-        if (postLiked.likes.includes(userId)) {
-             postLiked.likes.pull(userId)
-        }
 
         res.status(200).json({
             success: true,
-            message: "You liked this post!"
-           
+            message: "Liked and post added to likes"
+
         })
+
+
+
+        
+
     } catch (error) {
         console.log(error)
         if (error.message === "Post not found") {
