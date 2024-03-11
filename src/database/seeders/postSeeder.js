@@ -2,14 +2,15 @@
 
 import Post from "../../models/Post.js"
 import mongoose from "mongoose"
-import bcrypt from "bcrypt"
 import { dbConnection } from "../../database/db.js";
+import { faker } from "@faker-js/faker"
+import { handleError } from "../../utils/handleError.js";
 
 
 const generateFakePost = () => {
     const postFaker = new Post();
-    postFaker.title = faker.person.Name();
-    postFaker.description = faker.internet.email();
+    postFaker.title = faker.lorem.sentence();
+    postFaker.description = faker.lorem.text();
     return postFaker;
 }
 
@@ -42,14 +43,10 @@ const postSeeder = async (req, res) => {
             },
         ])
 
-        const fakeUsers = Array.from({ length: 50 }, generateFakePost);
-        await User.save(fakeUsers);
+        const fakePosts = Array.from({ length: 40 }, generateFakePost);
+        await Post.save(fakePosts);
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Users cant be created",
-            error: error.message
-        })
+        handleError(res, "Cant retrieve users", 500)
     }
     finally  {await dbConnection.destroy()}
 }

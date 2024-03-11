@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.js",
-    "seed": "ts-node ./src/database/seeders/seeder.js"
+    "seed": "node ./src/database/seeders/seeder.js"
   },
   "keywords": [],
   "author": "",

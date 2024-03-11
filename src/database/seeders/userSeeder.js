@@ -3,6 +3,8 @@ import User from "../../models/User.js"
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import { dbConnection } from "../../database/db.js";
+import { handleError } from "../../utils/handleError.js";
+import { faker } from "@faker-js/faker"
 
 
 const generateFakeUser = () => {
@@ -42,11 +44,7 @@ const userSeeder = async (req, res) => {
         const fakeUsers = Array.from({ length: 20 }, generateFakeUser);
         await User.save(fakeUsers);
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Users cant be created",
-            error: error.message
-        })
+        handleError(res, "Cant retrieve users", 500)
     }
     finally  {await dbConnection.destroy()}
 }
