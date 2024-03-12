@@ -1,6 +1,6 @@
 
-import { userSeeder } from "./usersSeeders.js";
-import {postSeeder} from "./postSeeder.js"
+import { userSeeder } from "./userSeeder.js";
+import { postSeeder } from "./postSeeder.js"
 
 const launchSeeder = async () => {
     await userSeeder();
