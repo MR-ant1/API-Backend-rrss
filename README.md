@@ -1,19 +1,19 @@
 # API SOCIAL NETWORK
 
-### OBJETIVO :dart:
+### OBJECTIVE :dart:
 This proyect has as objetive to recreate the backend of a basic social network in which you can send post to be seen by all users and interact with the other members's posts.
 
-### INDICE :open_file_folder: 
+### TABLE OF CONTENTS :open_file_folder: 
 - [API SOCIAL NETWORK](#api-social-network)
-    - [OBJETIVO :dart:](#objetivo-dart)
-    - [INDICE :open\_file\_folder:](#indice-open_file_folder)
+    - [OBJECTIVE :dart:](#objective-dart)
+    - [TABLE OF CONTENTS :open\_file\_folder:](#table-of-contents-open_file_folder)
     - [STACK :wrench:](#stack-wrench)
     - [ABOUT API :blue\_book:](#about-api-blue_book)
     - [HOW TO DOWNLOAD AND RUN IT :mag:](#how-to-download-and-run-it-mag)
-    - [DISEÑO DE LA BASE DE DATOS :computer:](#diseño-de-la-base-de-datos-computer)
-    - [AUTOR :pencil2:](#autor-pencil2)
-    - [POSIBLES MEJORAS :heavy\_check\_mark:](#posibles-mejoras-heavy_check_mark)
-    - [AGRADECIMIENTOS :raised\_hands:](#agradecimientos-raised_hands)
+    - [DATABASE DESIGN :computer:](#database-design-computer)
+    - [AUTHOR :pencil2:](#author-pencil2)
+    - [POSIBLE IMPROVEMENTS :heavy\_check\_mark:](#posible-improvements-heavy_check_mark)
+    - [ACKNOWLEDGEMENTS :raised\_hands:](#acknowledgements-raised_hands)
 
 ### STACK :wrench:
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="HTML5" /><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" alt="CSS"/>
@@ -101,7 +101,7 @@ npm run dev
 </details>
 
 
-### DISEÑO DE LA BASE DE DATOS :computer:
+### DATABASE DESIGN :computer:
 
 
 In first place, a variable "app" in file Server.js was created to be linked with express, to allow the server work properly.
@@ -176,17 +176,20 @@ After we defined req.tokenData, this is used in the other middleware to check if
 <details>
 <summary>AUTH ENDPOINTS</summary>
 
+Before anything, to make endpoints work, we create routes. The first part of the route "/api" was located in server to start from here all endpoints. Then, a router file redirects each type of routes to a group (auth endpoints, users endpoints and posts endpoints).
+![alt text](img/RouterPicture.png)
+Finally, the route ends in each type of endpoints file(auth.routes, user.routes or post.routes) where the method and the end of route are assigned to complete the whole url. /api/users/:id(example)
+![alt text](img/PostRoutesPicture.png)
+Thanks to this distribution, we have the route separated in different files and dont concentrate all responsability in an unique file (server) where there are other importants processes for the app work.
+
+
 - Registration: 
 ![alt text](img/RegisterControllerPicture.png)
-First of all, we require to new user his personal info through the body.
+First of all, we require to the new user his personal info through the body. Then, some text validations execute with conditionals to detect a wrong characters input, a password's lenght bigger athan allowed or an incorrect email composition, followed by the encryption of the typed password.
+We'll go to our client and to make this endpoint work, we are going to type the next route with the POST method (if we imported the endpoint collection, all should be prepared by default):
+https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/register. (POST METHOD)
+After this we go to body section and introduce in the "x" place, the next parameters to add to our user:
 
-
-Una vez introducidos, se llevan acabo validaciones sobre el formato y el tamaño de los datos y se trata la contraseña para encriptarla mediante bcrypt. Este endpoint sustituye en si mismo a la función de crear usuarios que a priori se pensaba incluir en "userControler"
-Para llevar a cabo este endpoint, iremos anuestro client y mediante el metodo POST, añadiremos la ruta asociada al registro:
-localhost:PORT/api/auth/register.
-Donde localhost se usa al ejecutarse en local, y PORT representa el puerto introducido en el archivo .env que ocupa la base de datos.
-Si importamos la colección que adjunto en la carpeta HTTP, deberían venir todo preparado y solo hará falta cambiar el puerto de ser distinto al que ahi vendrá.
-Tras esto, iremos a la pestaña "Body", en introduciremos en el cuadro inferior de texto las 4 columnas a crear del usuario con sus valores donde aparecen las "x" tal y como vienen escritas aqui respetando comillas:
 ``` bash
 {
   "firstName": "xxxxx",
@@ -198,54 +201,29 @@ Tras esto, iremos a la pestaña "Body", en introduciremos en el cuadro inferior 
 
 - Login:
 ![alt text](img/LoginControllerPicture.png)
- Con login volvemos a saltar la primera parte. Se aprecia arriba de la imagen como se define la función usando request y response, después se piden tanto email como contraseña por body y, tras dos validaciones, se pasa a la parte que se ilustra.
+In login, email and password are asked in body, then, same validations take place to check email format and decrypt password. 
+Then, a users find is done using the email given in body, once is found, password given and saves are compared, and depending on this, we receive a confirm or a negative response. 
+If email and password match with a user in DB, token function run and create a new token unique for the user just logged in, assigning a tokendata which contains user's id and role.
+This will be used allowing next comprobations of authenticity in the rest of endpoints reserved to registered users.
+Try this endpoint exactly like register, but this time introduce the next route:
+https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/login  (POST METHOD)
 
- Se hace una búsqueda de un solo usuario que tenga ese mismo email (no puede haber dos usuarios con un mismo email), y se obtienen sus datos mediante select. 
- Tras esto, se hace una comparación mediante bcrypt con la contraseña almacenada (este se encarga de desencriptarla) y por último, se lleva a cabo la creación de un token temporal para ese usuario con jwt, importado arriba del documento. Le indicamos aqui que contendrá tanto el user_id como el rol del usuario loggeado.Y en el archivo aparte "types>index",
- ```
-export interface TokenData {
-    userId: number;
-    roleName: string;
-};
-
-declare global {
-    // Express
-    namespace Express {
-        export interface Request {
-            tokenData: TokenData;
-        }
-    }
-}
- ```
-damos formato a la función de token creada en el login.
-Este token será el que se use a partir de ahora para autentificar a cualquier usuario como perteneciente a la base de datos.
-Para hacer funcionar esta endpoint, debemos de nuevo acudir al body de nuestro client, y con mediante el metodo post y la ruta:
-- localhost:PORT/api/auth/login
- client, y consultar algun correo de algún usuario randomizado, aunque se recomienda usar el el correo con derechos de super_admin junto a la contraseña indicada(todos los usuarios randomizados y admin, tienen la misma contraseña por defecto)
+When we get the token number in our clients screen, we copy it and will paste it in all endpoints auth>bearer section to identificate. We recommend the use of this credentials to try the API, belongs to a super_admin user and has permission to use all endpoints:
  ``` bash
  "email": "superadmin@superadmin.com",
- "password": "useruser"
+ "password": "12345678"
 ```
-COPIAREMOS EL NUMERO DE TOKEN QUE LA CONSOLA DEL CLIENT DEVUELVA PARA, A PARTIR DE AHORA, UTILIZARLO EN NUESTRO CLIENT INTRODUCIENDOLO EN EL APARTADO AUTH>BEARER
 </details>
-<details>
-<summary>ROLES ENDPOINTS</summary>
-    GET ROLES (super_admin): GET -> localhost:PORT/api/roles
-Obtendremos como super admins la posibilidad de consultar todos los roles disponibles para los usuarios. Por defecto: user, admin y super_admin
 
-    CREATE ROLES (super_admin): POST -> localhost:PORT/api/roles
-    ![alt text](img/CreateRoles.png)
-Podremos crear nuevos roles para la BD(base de datos), necesitaremos introducir la columna "name" con su valor en el body como veniamos haciendo anteriormente mas el token que guardamos al loggear
-</details>
 <details>
 <summary>USER ENDPOINTS</summary>
-    GET USERS (super_admin): GET -> localhost:4001/api/users?limit=2&page=2
-Este endpoint nos traerá a todos los usuarios. La ruta varía respecto a los demas dado que en este hemos añadido un limitador de usuarios por página a mostrar para evitar largas listas en casos de muchos registros. Se pueden manipular las cifras tras limit y page para modificar el numero de registros por pagina y la pagina en la que situarse. Puede quitarse la elección de pagina
+GET ALL USERS (super_admin): GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users
+Brings all user information. Reserved only for super_admin users (to not compromise personal information of users like email. Password appears encrypted)
 
-     GET USERS BY ID (super_admin): GET -> localhost:PORT/api/users/id
-Podremos obtener los datos de un usuario concreto. Pondremos el numero de de id del usuario en lugar del "id" de la ruta para indicar cual buscamos.
-     CREATE USERS (super_admin): POST -> localhost:PORT/api/users
-Añadir nuevos usuarios a la BD. Tendremos que introducir en el body de nuestro client, los siguientes registros con nuestra elección para cada uno. tambien el token en auth>bearer, como en todos los endpoints salvo login y register:
+     
+UPDATE PROFILE (super_admin): PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users
+Change all info you want from your profile. You'll find four fields in body. Modify those you want and will be changed in your user in database.
+Don't leave any field empty, just type same value if dont wanna change this field.
 ``` bash
 {
     "firstName": "xxxxxxx",
@@ -254,30 +232,58 @@ Añadir nuevos usuarios a la BD. Tendremos que introducir en el body de nuestro 
     "password": "xxxxxxx"
 }
 ```
-    GET PROFILE: GET -> localhost:PORT/api/users/profile
-Obtener los datos de la propia cuenta logueada. Utilizará el token asignado para identificar al dueño de la petición.
+GET PROFILE: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile
+By your user ID in token, will take you to your profile info. Only need to paste the token in auth section.
 
-    UPDATE PROFILE: PUT -> localhost:PORT/api/users/profile
-    ![alt text](img/UpdateProfileController.png)
-De nuevo, mediante la identificación por token, obtendremos el usuario que realiza petición y, mediante body, le introduciremos los registros y valores nuevos para nuestro usuario. Los introduciremos de la misma forma que explicamos en Register y en CREATE USERS.
+DELETE USER BY ID: DELETE -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile/ID
+Quit any user from db introducing its ID in route where ID is located. Only super admins can use this endpoint. Authentification take place through tokenData.
+
+
+</details>
+<details>
+<summary>POSTS ENDPOINTS</summary>
+GET ALL POSTS: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts
+Get all posts from all users. Function availible for all kinf of users to read the different posts and interact with all of them.
+
+GET POST BY ID: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/ID
+Bring a specific post from any user adding its ID in the route (replacing ID)
+
+GET OWN POSTS : GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/own
+Retrieve all posts sent by your user. Only needs de token in auth to work.
+
+GET OTHER USER POSTS : GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/posts/USERID
+Retrieve all posts sent by other user. Insert the user's ID instead of USERID in the route.
+
+CREATE POST : POST -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts
+Create a new entry in db where you can send a title and a description to the post. All users will be able to read it. Insert both fields in body
+
+UPDATE POST BY ID : PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/ID
+Change your post's title or description using this endpoint. Only can edit post owned by your user. Introduce post ID in route and write your new values in body. If its not your post, an error advises you.
+
+DELETE POST BY ID : DELETE -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/ID
+Erase an entry which belong to your user and you dont want to have anymore. Introduce its ID in route and if it belongs to your account, bye bye post.
+
+LIKE A POST : PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/ID
+Introduce the ID in route of the post you wanna like and instantanely, the post will show your like at the same time your profile will show your liked posts.
 
 </details>
 </details>
 
-###  AUTOR :pencil2:
+###  AUTHOR :pencil2:
 - Antonio Rodrigo - Full Stack Developer student
 
 - <a href="https://github.com/MR-ant1">GitHub - <a>Linkedin</a>
 
-### POSIBLES MEJORAS :heavy_check_mark: 
+### POSIBLE IMPROVEMENTS :heavy_check_mark: 
 
--En el futuro se podrían implementar mas funciones como borrar usuarios, roles o citas.
--Podría mejorarse algún endpoint añadiendole mas información a devolver para mejorar la accesibilidad y manejo del programa.
+- A follow users function could be included in future versions to improve the experience of the network
+- Controllers and validations could have been more abstracted and separed in different files in order to locate each action in different files and make the API more scalable
+- Some more possible changes to allow create a better Timeline with the users each one follows, after include follow function.
 
-### AGRADECIMIENTOS :raised_hands:
+### ACKNOWLEDGEMENTS :raised_hands:
+Big shout out like always to the GeeksHubs team for giving me the change of learning in this wonderfull world of developing! 
 
-Muchísimas gracias como siempre al equipo de GeeksHubs Achademy por brindarme esta posibilidad de desarrollarme en el mundo y a todos mis compañeros que siempre están ahi para echar una mano cuando hace falta!
 
-[def]: #Agradecimientos-
+[def]: #Acknowledgements-
 
-:arrow_up: [INDICE](#INDICE-open_file_folder)
+:arrow_up: [TABLE OF CONTENTS](#TABLE_OF_CONTENTS-open_file_folder)
