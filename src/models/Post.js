@@ -21,7 +21,6 @@ const postSchema = new Schema(
                 ref: 'User'
             }
         ]
-
     },
     {
         timestamps: true,

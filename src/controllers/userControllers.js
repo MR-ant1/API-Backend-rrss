@@ -9,7 +9,6 @@ export const getUsers = async (req, res) => {
     try {
         const userList = await User.find()
 
-
         if (!userList) {
             throw new Error("There is no users")
         }
@@ -30,8 +29,8 @@ export const getUsers = async (req, res) => {
 }
 
 export const getProfile = async (req, res) => {
+    
     try {
-
         const userId = req.tokenData.userId
 
         const userProfile = await User.findOne(
@@ -59,9 +58,7 @@ export const updateProfile = async (req, res) => {
         const userId = req.tokenData.userId
         const { firstName, lastName, email, password } = req.body;
 
-
         const passwordEncrypted = bcrypt.hashSync(password, 8)
-
 
         if (!userId) {
             throw new Error("Login to update profile")

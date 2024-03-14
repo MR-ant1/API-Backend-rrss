@@ -13,5 +13,4 @@ router.get("/posts/:userId", auth, getOtherUserPosts)
 router.put("/profile", auth, updateProfile)
 router.delete("/:_id", auth, isSuperAdmin, deleteUserById)
 
-
 export default router

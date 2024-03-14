@@ -8,9 +8,9 @@ import { faker } from "@faker-js/faker";
 
 const generateFakeUser = () => {
     const userFaker = new User();
-    userFaker.firstName = faker.person.firstName(); 
-    userFaker.lastName = faker.person.lastName();      
-    userFaker.email = faker.internet.email() 
+    userFaker.firstName = faker.person.firstName();
+    userFaker.lastName = faker.person.lastName();
+    userFaker.email = faker.internet.email()
     userFaker.password = bcrypt.hashSync("12345678", 5);
     return userFaker;
 }
@@ -45,16 +45,16 @@ export const userSeeder = async (req, res) => {
                 role: "super_admin",
                 _id: new mongoose.Types.ObjectId("65f00ffea58ed6fa7fc8d44d")
             }
-             
+
         ])
 
         const fakeUsers = Array.from({ length: 20 }, generateFakeUser);
         await User.create(fakeUsers)
-       
+
 
     } catch (error) {
         console.log(error)
-    } finally {disconnect(dbconnection())}
+    } finally { disconnect(dbconnection()) }
 }
 
 

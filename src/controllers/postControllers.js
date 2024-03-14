@@ -23,7 +23,6 @@ export const getAllPosts = async (req, res) => {
         }
         handleError(res, "Cant retrieve posts", 500)
     }
-
 }
 
 export const getPostById = async (req, res) => {
@@ -154,7 +153,7 @@ export const updatePostById = async (req, res) => {
         if (!postId) {
             throw new Error("You need to choose one post to edit!")
         }
-
+        
         const updatedPost = await Post.findOneAndUpdate(
             {
                 _id: postId,

@@ -1,5 +1,5 @@
 # API SOCIAL NETWORK
-
+![alt text](img/WelcomePicture.jpg)
 ### OBJECTIVE :dart:
 This proyect has as objetive to recreate the backend of a basic social network in which you can send post to be seen by all users and interact with the other members's posts.
 
