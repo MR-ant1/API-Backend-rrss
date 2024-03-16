@@ -1,12 +1,12 @@
 # API SOCIAL NETWORK
 ![alt text](img/WelcomePicture.jpg)
-### OBJECTIVE :dart:
-This proyect has as objetive to recreate the backend of a basic social network in which you can send post to be seen by all users and interact with the other members's posts.
+### TARGET :dart:
+The target of this proyect is to recreate the backend of a basic social network in which you can send posts to be seen by all users and interact with the other members's posts.
 
-### TABLE OF CONTENTS :open_file_folder: 
+### INDEX :open_file_folder: 
 - [API SOCIAL NETWORK](#api-social-network)
-    - [OBJECTIVE :dart:](#objective-dart)
-    - [TABLE OF CONTENTS :open\_file\_folder:](#table-of-contents-open_file_folder)
+    - [TARGET :dart:](#target-dart)
+    - [INDEX :open\_file\_folder:](#index-open_file_folder)
     - [STACK :wrench:](#stack-wrench)
     - [ABOUT API :blue\_book:](#about-api-blue_book)
     - [HOW TO DOWNLOAD AND RUN IT :mag:](#how-to-download-and-run-it-mag)
@@ -22,13 +22,13 @@ This proyect has as objetive to recreate the backend of a basic social network i
 
 ### ABOUT API :blue_book:
 
-This API allows to create and login a user to write posts to share with the rest of people. You will interact in different ways:
+This API allows to create and to log in a user to write posts to share with the rest of the people. You will interact in different ways:
 
-- Registering and login your new user before doing any action over your profile or posts
-- Reading any post from any user by searching for his account.
+- Registering and log in your new user before doing any action over your profile or posts
+- Reading any post from any user by searching for their account.
 - Checking or update your profile info
 - Creation of new posts where you can add a title and a text. This post can receive likes from all others users and you can also give or remove likes to your own or other users posts
-- Delete, update or look for your own posts. Also look for other users posts by his profile ID, or by Post ID
+- Delete, update or look for your own posts. Also look for other users posts by their profile ID, or by Post ID
 - Consulting all existent users info (super_admin)
 
 
@@ -42,7 +42,7 @@ Follow the next steps to prepare the API's environment and make it work correctl
 <details>
 <summary>INSTRUCTIONS</summary>
 
- 1. First install Visual Studio Code, docker, some client (like "Thunder", "Postman" or "Insomnia") and MongoDB Compass. Here I leave the links to download each one. (as client, can be downloaded Postman or Insomnia, or install thunder from the extensions area in visual studio)
+ 1. First install Visual Studio Code, Docker, some client (like "Thunder", "Postman" or "Insomnia") and MongoDB Compass. Here I leave the links to download each of them (as client, it can be downloaded Postman or Insomnia, or install thunder from the extensions area in visual studio).
 - <a href=https://www.docker.com/products/docker-desktop/ >Docker Desktop </a>
 - <a href=https://www.mongodb.com/try/download/compass > MongoDB Compass</a>
 - <a href=https://www.postman.com/downloads/ > Postman</a>
@@ -53,8 +53,7 @@ Follow the next steps to prepare the API's environment and make it work correctl
 ```hash 
 docker pull MongoDB
 ```
-seguido de este otro comando para establecer un contenedor con esa imagen. Detras de name, daremos el nombre que queramos al contenedor, despues de -p, estableceremos los puertos que usaremos (siendo el de la derecha el de nuestro equipo) y en ROOT y 1234, introduciremos nuestro usuario y contraseña para este contenedor.
-After this command, we type the down here command to create the Mongo container. After name, we choose our container's title, then, after -p we'll set the ports we are using and finally we type our username and password in both words in command.
+After this command, we type the command down here to create the Mongo container. After the name, we choose our container's title, then, after -p we'll set the ports we are using and finally we type our username and password in both words in command.
 ``` hash
 docker run -d -p 27017:27017 --name mongo -v mongo_data:/data/db -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root mongo:latest
 ```
@@ -63,10 +62,9 @@ docker run -d -p 27017:27017 --name mongo -v mongo_data:/data/db -e MONGO_INITDB
 ``` hash
 git: init
 ```
-Una vez lo hayamos hecho, Clonaremos el repositorio con el comando "git clone https://github.com/MR-ant1/Tattoo-API.git"
-Once we do it, Clone the repository with command "git clone https://github.com/MR-ant1/Tattoo-API.git
+Once we do it, Clone the repository with the command "git clone https://github.com/MR-ant1/Tattoo-API.git
 
-4. Execute in terminal, in order of appaerance, next commands:
+4. Execute in terminal, in order of appaerance, the next commands:
 ``` bash
 npm init --y
 ```
@@ -81,7 +79,7 @@ MONGO_URI=mongodb+srv://Antonio:RvtT3Dhgv1agfpAQ@apitattoo.e78cn4e.mongodb.net/
 
 JWT_SECRET=SECRETO
 ```
-6. Create a new connection in MongoDB Compass. is as simple as copy paste the MONGO_URI link which is over this sentence.
+6. Create a new connection in MongoDB Compass. It's as simple as copy paste the MONGO_URI link which is over this sentence.
 
 7. Execute seeders through command:
 ``` bash
@@ -118,7 +116,7 @@ export const dbconnection = () => {
     )
 }
 ```
-With dbConnection defined, next code is added to server.js configuration for server and databse connection. Const PORT contains port information imported from .env file. app.use create the first component for the next routes each endpoints will have. 
+With dbConnection defined, next code is added to server.js configuration for server and database connection. Const PORT contains port information imported from .env file app.use create the first component for the next routes that will have each endpoint. 
 In dbConnection function, we make the db connection (by calling it and importing from db.js) and also the server run (through app.listen) with a message confirming it.
 ```
 const PORT = process.env.PORT || 4002
@@ -142,11 +140,7 @@ dbconnection()
 <details>
 <summary>MODELS</summary>
 
-The next step is to create models for Users and Posts, what set the properties of this entities and relations between them. This will allow interacting with endpoints in order to add, update, get or delete registers.
-![alt text](img/UserModelPic.png)
-
-Las dos últimas que se aprecian, son de los dos tipos de relación utilizados en este proyecto, onetoMany y ManyToOne, al ser role_id una foreign_key de roles, una tabla mas fuerte que Users.
-En caso contrario, tenemos appointments al ser Users mas fuerte y haber una columna "user_id" en appointments
+The next step is to create models for Users and Posts, this sets the properties of this entities and relations between them. This will allow interacting with endpoints in order to add, update, get or delete registers.
 
 ![alt text](img/UserModel.png)
 
@@ -157,18 +151,19 @@ In previous picture, the final field called "likes" represent the amount of like
 <details>
 <summary>MIDDLEWARES</summary>
 
-Their function is to control user's access to the different actions in API. Two middlewares were created, "auth" to check if user has logged in to be able to make any action, and "isSuperAdmin", that checks if user owns this role who has some especial permissions to some endpoints.
+Their function is to control user's access to the different actions in API. Two middlewares were created, "auth" to check if the user has logged in to be able to make any action, and "isSuperAdmin", that checks if the user owns this role who has some especial permissions to some endpoints.
 We include this middlewares after the route to give an extra comprobation before the endpoint executes, depending on which users we'll allow to make any action.
 
     AUTH
 ![alt text](img/AuthMiddlewarePicture.png)
-  Auth variable is defined. This will use req, res and next parameters. Then, const Token is defined by taking authorization headers from user and spliting [] characters. 
-  Finally, we defined decoded const to verify the token obtained and the secret word definded in .env. If both parameters are correct, req.tokenData is created to use it in endpoints and get userId or UserRole and next function allows to execute next step.
+
+  Auth variable is defined. This will use req, res and next parameters. Then, const Token is defined by taking authorization headers from user and spliting [""] characters. 
+  Finally, we defined decoded const to verify the token obtained and the secret word definded in .env. If both parameters are correct, req.tokenData is created to use it in endpoints and get userId or UserRole and the next function allows to execute next step.
 
     IS_SUPER_ADMIN
 ![alt text](img/isSuperAdminMiddlewarePicture.png)
-Comprueba si el rolename asociado al user_id del token, es super_admin y da acceso al endpoint limitado a dicho rol.
-After we defined req.tokenData, this is used in the other middleware to check if user has a super_admin role in his token and allow him to run "super admin" endpoints.
+
+After we defined req.tokenData, this is used in the other middleware to check if the user has a super_admin role in his token and allow him to run "super admin" endpoints.
 </details>
 
 <details>
@@ -176,7 +171,7 @@ After we defined req.tokenData, this is used in the other middleware to check if
 <details>
 <summary>AUTH ENDPOINTS</summary>
 
-Before anything, to make endpoints work, we create routes. The first part of the route "/api" was located in server to start from here all endpoints. Then, a router file redirects each type of routes to a group (auth endpoints, users endpoints and posts endpoints).
+Before anything, to make endpoints work, we create routes. The first part of the route "/api" was located in the server to start from here all endpoints. Then, a router file redirects each type of routes to a group (auth endpoints, users endpoints and posts endpoints).
 ![alt text](img/RouterPicture.png)
 Finally, the route ends in each type of endpoints file(auth.routes, user.routes or post.routes) where the method and the end of route are assigned to complete the whole url. /api/users/:id(example)
 ![alt text](img/PostRoutesPicture.png)
@@ -185,7 +180,7 @@ Thanks to this distribution, we have the route separated in different files and 
 
 - Registration: 
 ![alt text](img/RegisterControllerPicture.png)
-First of all, we require to the new user his personal info through the body. Then, some text validations execute with conditionals to detect a wrong characters input, a password's lenght bigger athan allowed or an incorrect email composition, followed by the encryption of the typed password.
+First of all, we require to the new user his personal info through the body. Then, some text validations execute with conditionals to detect a wrong characters input, a password's lenght bigger than allowed or an incorrect email composition, followed by the encryption of the typed password.
 We'll go to our client and to make this endpoint work, we are going to type the next route with the POST method (if we imported the endpoint collection, all should be prepared by default):
 https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/register. (POST METHOD)
 After this we go to body section and introduce in the "x" place, the next parameters to add to our user:
@@ -201,14 +196,14 @@ After this we go to body section and introduce in the "x" place, the next parame
 
 - Login:
 ![alt text](img/LoginControllerPicture.png)
-In login, email and password are asked in body, then, same validations take place to check email format and decrypt password. 
-Then, a users find is done using the email given in body, once is found, password given and saves are compared, and depending on this, we receive a confirm or a negative response. 
-If email and password match with a user in DB, token function run and create a new token unique for the user just logged in, assigning a tokendata which contains user's id and role.
+In login, email and password are asked in body, then, the same validations take place to check email format and decrypt the password. 
+Then, a user find is done using the email given in body, once It's found, password given and both are compared, and depending on this, we receive a confirmation or a negative response. 
+If the email and the password match with a user in DB, the token function runs and creates a new token unique for the user that just logged in, assigning a tokendata which contains user's id and role.
 This will be used allowing next comprobations of authenticity in the rest of endpoints reserved to registered users.
 Try this endpoint exactly like register, but this time introduce the next route:
 https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/login  (POST METHOD)
 
-When we get the token number in our clients screen, we copy it and will paste it in all endpoints auth>bearer section to identificate. We recommend the use of this credentials to try the API, belongs to a super_admin user and has permission to use all endpoints:
+When we get the token number in our clients screen, we copy it and will paste it in all endpoints auth>bearer section to identificate. We recommend the use of this credentials to try the API, it belongs to a super_admin user and has permission to use all endpoints:
  ``` bash
  "email": "superadmin@superadmin.com",
  "password": "12345678"
@@ -218,12 +213,12 @@ When we get the token number in our clients screen, we copy it and will paste it
 <details>
 <summary>USER ENDPOINTS</summary>
 GET ALL USERS (super_admin): GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users
-Brings all user information. Reserved only for super_admin users (to not compromise personal information of users like email. Password appears encrypted)
+It brings all user information. It's reserved only for super_admin users (to not compromise personal information from the users like the email. The password appears encrypted)
 
      
 UPDATE PROFILE (super_admin): PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users
-Change all info you want from your profile. You'll find four fields in body. Modify those you want and will be changed in your user in database.
-Don't leave any field empty, just type same value if dont wanna change this field.
+It changes all info you want from your profile. You'll find four fields in the body. You can modify those you want and will be changed in your user in database.
+Don't leave any field empty, just type the same value if dont wanna change this field.
 ``` bash
 {
     "firstName": "xxxxxxx",
@@ -233,17 +228,17 @@ Don't leave any field empty, just type same value if dont wanna change this fiel
 }
 ```
 GET PROFILE: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile
-By your user ID in token, will take you to your profile info. Only need to paste the token in auth section.
+Through your user ID in token, API will take you to your profile info. You only need to paste the token in auth section.
 
 DELETE USER BY ID: DELETE -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile/ID
-Quit any user from db introducing its ID in route where ID is located. Only super admins can use this endpoint. Authentification take place through tokenData.
+You can delete any user from db introducing its ID in route where ID is located. Only super admins can use this endpoint. Authentification take place through tokenData.
 
 
 </details>
 <details>
 <summary>POSTS ENDPOINTS</summary>
 GET ALL POSTS: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts
-Get all posts from all users. Function availible for all kinf of users to read the different posts and interact with all of them.
+Get all posts from all users. Function available for all kind of users to read the different posts and interact with all of them.
 
 GET POST BY ID: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/ID
 Bring a specific post from any user adding its ID in the route (replacing ID)
@@ -277,11 +272,11 @@ Introduce the ID in route of the post you wanna like and instantanely, the post 
 ### POSIBLE IMPROVEMENTS :heavy_check_mark: 
 
 - A follow users function could be included in future versions to improve the experience of the network
-- Controllers and validations could have been more abstracted and separed in different files in order to locate each action in different files and make the API more scalable
+- Controllers and validations could have been more abstracted and separated in different files in order to locate each action in different files and make the API more scalable
 - Some more possible changes to allow create a better Timeline with the users each one follows, after include follow function.
 
 ### ACKNOWLEDGEMENTS :raised_hands:
-Big shout out like always to the GeeksHubs team for giving me the change of learning in this wonderfull world of developing! 
+Big shout out like always to the GeeksHubs team for giving me the change of learning in this wonderful world of developping! 
 
 
 [def]: #Acknowledgements-
