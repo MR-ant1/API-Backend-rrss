@@ -20,6 +20,7 @@ export const register = async (req, res) => {
             throw new Error("Password must contain between 8 and 20 characters")
         }
 
+        
         const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         if (!validEmail.test(email)) {
             throw new Error("Format email invalid")
