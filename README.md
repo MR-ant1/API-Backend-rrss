@@ -42,36 +42,28 @@ Follow the next steps to prepare the API's environment and make it work correctl
 <details>
 <summary>INSTRUCTIONS</summary>
 
- 1. First install Visual Studio Code, Docker, some client (like "Thunder", "Postman" or "Insomnia") and MongoDB Compass. Here I leave the links to download each of them (as client, it can be downloaded Postman or Insomnia, or install thunder from the extensions area in visual studio).
-- <a href=https://www.docker.com/products/docker-desktop/ >Docker Desktop </a>
+ 1. First install Visual Studio Code, some client (like "Thunder", "Postman" or "Insomnia") and MongoDB Compass. Here I leave the links to download each of them (as client, it can be downloaded Postman or Insomnia, or install thunder from the extensions area in visual studio).
+ 2. 
 - <a href=https://www.mongodb.com/try/download/compass > MongoDB Compass</a>
 - <a href=https://www.postman.com/downloads/ > Postman</a>
 - <a href=https://code.visualstudio.com/ > Visual studio Code</a>  
 
 
- 2. Then we open windows powershell and type the next command to download the MongoDB's image
-```hash 
-docker pull MongoDB
-```
-After this command, we type the command down here to create the Mongo container. After the name, we choose our container's title, then, after -p we'll set the ports we are using and finally we type our username and password in both words in command.
-``` hash
-docker run -d -p 27017:27017 --name mongo -v mongo_data:/data/db -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root mongo:latest
-```
 
-3. Create a folder to the proyect, open it and execute this command in console:
+1. Create a folder to the proyect, open it and execute this command in console:
 ``` hash
 git: init
 ```
 Once we do it, Clone the repository with the command "git clone https://github.com/MR-ant1/Tattoo-API.git
 
-4. Execute in terminal, in order of appaerance, the next commands:
+2. Execute in terminal, in order of appaerance, the next commands:
 ``` bash
 npm init --y
 ```
 ``` bash
 npm install
 ```
-5. Create file ".env". Use sample incluided with references needed to introduce our container data and be able to run server and database. 
+3. Create file ".env". Use sample incluided with references needed to introduce our container data and be able to run server and database. 
 ``` bash
 PORT=4001
 
@@ -79,9 +71,9 @@ MONGO_URI=mongodb+srv://Antonio:RvtT3Dhgv1agfpAQ@apitattoo.e78cn4e.mongodb.net/
 
 JWT_SECRET=SECRETO
 ```
-6. Create a new connection in MongoDB Compass. It's as simple as copy paste the MONGO_URI link which is over this sentence.
+4. Create a new connection in MongoDB Compass. It's as simple as copy paste the MONGO_URI link which is over this sentence.
 
-7. Execute seeders through command:
+5. Execute seeders through command:
 ``` bash
 npm run seed
 ```
@@ -90,12 +82,12 @@ or
 node ./src/database/seeders/seeder.js 
 ```
 With this, we'll adding our models and registers to our Database, so we can check all data in compass
-8. Run the server with command:
+6. Run the server with command:
 ``` bash
 npm run dev
 ```
-9. Go to the client an import collection file included in HTTP folder
-10. Now you have all prepared to try the different functions from the API. Continue reading to find all instructions about it.
+7. Go to the client an import collection file included in HTTP folder
+8. Now you have all prepared to try the different functions from the API. Continue reading to find all instructions about it.
 </details>
 
 
@@ -142,7 +134,7 @@ dbconnection()
 
 The next step is to create models for Users and Posts, this sets the properties of this entities and relations between them. This will allow interacting with endpoints in order to add, update, get or delete registers.
 
-![alt text](img/UserModel.png)
+![alt text](img/UserModelPic.png)
 
 In previous picture, the final field called "likes" represent the amount of likes that every post received from users. In this one, we introduce a reference to User to make possible relations with the other model.
 
@@ -172,14 +164,20 @@ After we defined req.tokenData, this is used in the other middleware to check if
 <summary>AUTH ENDPOINTS</summary>
 
 Before anything, to make endpoints work, we create routes. The first part of the route "/api" was located in the server to start from here all endpoints. Then, a router file redirects each type of routes to a group (auth endpoints, users endpoints and posts endpoints).
+
 ![alt text](img/RouterPicture.png)
+
 Finally, the route ends in each type of endpoints file(auth.routes, user.routes or post.routes) where the method and the end of route are assigned to complete the whole url. /api/users/:id(example)
+
 ![alt text](img/PostRoutesPicture.png)
+
 Thanks to this distribution, we have the route separated in different files and dont concentrate all responsability in an unique file (server) where there are other importants processes for the app work.
 
 
 - Registration: 
+
 ![alt text](img/RegisterControllerPicture.png)
+
 First of all, we require to the new user his personal info through the body. Then, some text validations execute with conditionals to detect a wrong characters input, a password's lenght bigger than allowed or an incorrect email composition, followed by the encryption of the typed password.
 We'll go to our client and to make this endpoint work, we are going to type the next route with the POST method (if we imported the endpoint collection, all should be prepared by default):
 https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/register. (POST METHOD)
@@ -195,6 +193,7 @@ After this we go to body section and introduce in the "x" place, the next parame
 ```
 
 - Login:
+
 ![alt text](img/LoginControllerPicture.png)
 In login, email and password are asked in body, then, the same validations take place to check email format and decrypt the password. 
 Then, a user find is done using the email given in body, once It's found, password given and both are compared, and depending on this, we receive a confirmation or a negative response. 
