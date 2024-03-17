@@ -72,19 +72,14 @@ export const updateProfile = async (req, res) => {
                 _id: userId
             },
             {
-                firstName,
-                lastName,
-                email,
-                password: passwordEncrypted
-            },
-            {
                 new: true
             }
         )
-          // const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        // if (!validEmail.test(email)) {
-        //     throw new Error("Email format is not valid")
-        // }
+          if (email){
+        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        if (!validEmail.test(email)) {
+            throw new Error("Email format is not valid")
+        }}
         res.status(200).json({
             success: true,
             message: "Profile updated successfully",
@@ -95,9 +90,9 @@ export const updateProfile = async (req, res) => {
         if (error.message === "Login to update profile") {
             return handleError(res, error.message, 404)
         }
-        // if (error.message === "Email format is not valid") {
-        //     return handleError(res, error.message, 400)
-        // }
+        if (error.message === "Email format is not valid") {
+            return handleError(res, error.message, 400)
+        }
         handleError(res, "Cant update profile", 500)
     }
 }
