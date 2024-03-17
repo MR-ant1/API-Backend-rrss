@@ -217,14 +217,13 @@ It brings all user information. It's reserved only for super_admin users (to not
 
      
 UPDATE PROFILE (super_admin): PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users
-It changes all info you want from your profile. You'll find four fields in the body. You can modify those you want and will be changed in your user in database.
-Don't leave any field empty, just type the same value if dont wanna change this field.
+It changes all info you want from your profile. You'll find four fields in the body. You can modify all fields excepting password and each one or selected will be changed in your user in database.
+You can introduce only those fields you wanna update.
 ``` bash
 {
     "firstName": "xxxxxxx",
     "lastName": "xxxxxxxx",
-    "email": "xxxxxx@xxx.xxx",
-    "password": "xxxxxxx"
+    "email": "xxxxxx@xxx.xxx"
 }
 ```
 GET PROFILE: GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile
@@ -274,6 +273,7 @@ Introduce the ID in route of the post you wanna like and instantanely, the post 
 - A follow users function could be included in future versions to improve the experience of the network
 - Controllers and validations could have been more abstracted and separated in different files in order to locate each action in different files and make the API more scalable
 - Some more possible changes to allow create a better Timeline with the users each one follows, after include follow function.
+- In the future, a change password endpoint with extra validation of recent password to allow the change will be added.
 
 ### ACKNOWLEDGEMENTS :raised_hands:
 Big shout out like always to the GeeksHubs team for giving me the change of learning in this wonderful world of developping! 
