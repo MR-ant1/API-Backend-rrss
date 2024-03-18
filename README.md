@@ -50,20 +50,21 @@ Follow the next steps to prepare the API's environment and make it work correctl
 
 
 
-1. Create a folder to the proyect, open it and execute this command in console:
+3. Create a folder to the proyect, open it and execute this command in console:
 ``` hash
 git: init
 ```
 Once we do it, Clone the repository with the command "git clone https://github.com/MR-ant1/Tattoo-API.git
 
-2. Execute in terminal, in order of appaerance, the next commands:
+4. Execute in terminal, in order of appaerance, the next commands:
 ``` bash
 npm init --y
 ```
 ``` bash
 npm install
 ```
-3. Create file ".env". Use sample incluided with references needed to introduce our container data and be able to run server and database. 
+5. Create file ".env". Use sample incluided with references needed to introduce our container data and be able to run server and database. 
+
 ``` bash
 PORT=4001
 
@@ -71,9 +72,9 @@ MONGO_URI=mongodb+srv://Antonio:RvtT3Dhgv1agfpAQ@apitattoo.e78cn4e.mongodb.net/
 
 JWT_SECRET=SECRETO
 ```
-4. Create a new connection in MongoDB Compass. It's as simple as copy paste the MONGO_URI link which is over this sentence.
+6. Create a new connection in MongoDB Compass. It's as simple as copy paste the MONGO_URI link which is over this sentence.
 
-5. Execute seeders through command:
+7. Execute seeders through command:
 ``` bash
 npm run seed
 ```
@@ -82,12 +83,12 @@ or
 node ./src/database/seeders/seeder.js 
 ```
 With this, we'll adding our models and registers to our Database, so we can check all data in compass
-6. Run the server with command:
+8. Run the server with command:
 ``` bash
 npm run dev
 ```
-7. Go to the client an import collection file included in HTTP folder
-8. Now you have all prepared to try the different functions from the API. Continue reading to find all instructions about it.
+9. Go to the client an import collection file included in HTTP folder
+10. Now you have all prepared to try the different functions from the API. Continue reading to find all instructions about it.
 </details>
 
 
