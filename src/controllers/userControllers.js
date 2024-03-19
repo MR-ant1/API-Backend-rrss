@@ -129,3 +129,65 @@ export const deleteUserById = async (req, res) => {
 
 }
 
+export const followUser = async (req, res) => {
+    try {
+        const userId = req.tokenData.userId
+        const followedUser = req.params._id
+
+        const Follower = await User.findOne(
+            {
+                _id: userId
+            }
+        )
+
+        if (Follower.following.includes(followedUser)) {
+            const followIndex = Follower.following.indexOf(followedUser)
+            Follower.following.splice(followIndex, 1)
+            await Follower.save()
+
+        } else
+            Follower.following.push(followedUser)
+        await Follower.save()
+
+
+        const userFollowed = await User.findOne(
+            {
+                _id: followedUser
+            }
+        )
+
+        if (!followedUser) {
+            throw new Error("User not found")
+        }
+
+        if (userFollowed.followedBy.includes(userId)) {
+            const followIndex = userFollowed.followedBy.indexOf(userId)
+            userFollowed.followedBy.splice(followIndex, 1)
+            await userFollowed.save()
+
+            return res.status(200).json({
+                success: true,
+                message: "Unfollowed"
+
+            })
+        } else
+
+            userFollowed.followedBy.push(userId)
+        await userFollowed.save()
+
+
+        res.status(200).json({
+            success: true,
+            message: "Followed!"
+
+        })
+
+    } catch (error) {
+        console.log(error)
+        if (error.message === "User not found") {
+            return handleError(res, error.message, 404)
+        }
+        handleError(res, "Cant follow user", 500)
+    }
+}
+
