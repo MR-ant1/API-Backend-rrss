@@ -30,6 +30,8 @@ This API allows to create and to log in a user to write posts to share with the 
 - Creation of new posts where you can add a title and a text. This post can receive likes from all others users and you can also give or remove likes to your own or other users posts
 - Delete, update or look for your own posts. Also look for other users posts by their profile ID, or by Post ID
 - Consulting all existent users info (super_admin)
+- Follow other users accounts.
+- Update a users role to give him more permissions (super_admin)
 
 
 ### HOW TO DOWNLOAD AND RUN IT :mag: 
@@ -231,6 +233,12 @@ Through your user ID in token, API will take you to your profile info. You only 
 
 DELETE USER BY ID: DELETE -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile/ID
 You can delete any user from db introducing its ID in route where ID is located. Only super admins can use this endpoint. Authentification take place through tokenData.
+
+FOLLOW A USER: PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/follow/ID
+You can follow any other user by introducing its ID in route where ID is located. Authentification take place through tokenData. Follow will add to the users followers section and to your "following" section too.
+
+UPDATE ROLE: PUT -> localhost:4001/api/users/ID/role
+Super admins can change the role that any user has. Introduce in this endpoint the user ID you want to change role, and type its new role in body (there are only 3: user, admin and super_admin)
 
 
 </details>

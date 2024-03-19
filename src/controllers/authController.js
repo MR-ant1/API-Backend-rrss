@@ -97,7 +97,7 @@ export const login = async (req, res) => {
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: "200h" //bajar despues tiempo
+                expiresIn: "3h"
             }
         )
 

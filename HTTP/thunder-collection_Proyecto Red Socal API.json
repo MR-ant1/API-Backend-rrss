@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Proyecto Red Socal API",
-    "dateExported": "2024-03-17T19:23:52.394Z",
+    "dateExported": "2024-03-19T12:32:58.627Z",
     "version": "1.1",
     "folders": [
         {
@@ -307,6 +307,47 @@
             "auth": {
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTAzMTc4MDAsImV4cCI6MTcxMTAzNzgwMH0.qepIJzkDpeuCNubDjiemPaMaAPENB37_M7DXTALTn3Y"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0a68bc64-a0cd-496c-ad69-47854092fe8c",
+            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+            "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
+            "name": "FOLLOW USER",
+            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/follow/65f00ff9a58ed6fa7fc8d44b",
+            "method": "PUT",
+            "sortNum": 140000,
+            "created": "2024-03-19T11:29:42.762Z",
+            "modified": "2024-03-19T11:31:04.760Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NDczOTYsImV4cCI6MTcxMTU2NzM5Nn0.UhdYo0wKQgyOzEDzpajYSzL0uCUG8ZX2DmhroJVdVA4"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b5a8f663-6464-4a89-b5f4-b481d3ab2d70",
+            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+            "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
+            "name": "UPDATE ROLE",
+            "url": "localhost:4001/api/users/65f00ff9a58ed6fa7fc8d44b/role",
+            "method": "PUT",
+            "sortNum": 150000,
+            "created": "2024-03-19T12:30:53.223Z",
+            "modified": "2024-03-19T12:31:34.274Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"role\": \"admin\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NDczOTYsImV4cCI6MTcxMTU2NzM5Nn0.UhdYo0wKQgyOzEDzpajYSzL0uCUG8ZX2DmhroJVdVA4"
             },
             "tests": []
         }
