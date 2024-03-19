@@ -73,8 +73,8 @@ export const updateProfile = async (req, res) => {
                 new: true
             }
         )
-                //Se valida el formato del nuevo correo para no poder añadir valores erroneos.      
-            if (email) {
+        //Se valida el formato del nuevo correo para no poder añadir valores erroneos.      
+        if (email) {
             const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
             if (!validEmail.test(email)) {
@@ -132,10 +132,31 @@ export const followUser = async (req, res) => {
         const userId = req.tokenData.userId
         const followedUser = req.params._id
 
-        if (!followedUser) {
+        const userFollowed = await User.findOne(
+            {
+                _id: followedUser
+            }
+        )
+
+        //Debería salir este error si se introduce mal un Id en params. pero, aunque no lo añade y da error 500, no salta este mensaje como debería
+        if (!userFollowed) {
             throw new Error("This user doesn't exists")
         }
-        //Debería salir el error superior error si se introduce mal un Id en params. pero, aunque no lo añade y da error, no salta éste como debería
+
+        if (userFollowed.followedBy.includes(userId)) {
+            const followIndex = userFollowed.followedBy.indexOf(userId)
+            userFollowed.followedBy.splice(followIndex, 1) //Si el id del usuario seguido ya encuentra en su array al seguidor, lo elimina haciendose unfollow
+            await userFollowed.save()
+
+            return res.status(200).json({
+                success: true,
+                message: "Unfollowed"
+
+            })
+        } else
+            userFollowed.followedBy.push(userId)
+        await userFollowed.save()
+
 
         const follower = await User.findOne(
             {
@@ -153,27 +174,6 @@ export const followUser = async (req, res) => {
         await follower.save()
 
 
-        const userFollowed = await User.findOne(
-            {
-                _id: followedUser
-            }
-        )
-
-        if (userFollowed.followedBy.includes(userId)) {
-            const followIndex = userFollowed.followedBy.indexOf(userId)
-            userFollowed.followedBy.splice(followIndex, 1) //Si el id del usuario seguido ya encuentra en su array al seguidor, lo elimina haciendose unfollow
-            await userFollowed.save()
-
-            return res.status(200).json({
-                success: true,
-                message: "Unfollowed"
-
-            })
-        } else
-            userFollowed.followedBy.push(userId)
-        await userFollowed.save()
-
-
         res.status(200).json({
             success: true,
             message: "Followed!"
@@ -183,7 +183,7 @@ export const followUser = async (req, res) => {
     } catch (error) {
         console.log(error)
         if (error.message === "This user doesn't exists") {
-            return handleError(res, error.message, 404)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "Cant follow user", 500)
     }
