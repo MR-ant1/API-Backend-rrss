@@ -32,7 +32,7 @@ This API allows to create and to log in a user to write posts to share with the 
 - Consulting all existent users info (super_admin)
 - Follow other users accounts.
 - Update a users role to give him more permissions (super_admin)
-- -See the timeline with posts from the users you follow
+- See the timeline with posts from the users you follow
 
 
 ### HOW TO DOWNLOAD AND RUN IT :mag: 
