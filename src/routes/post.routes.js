@@ -5,6 +5,7 @@ import { auth } from "../middlewares/auth.js";
 
 const router = Router()
 
+//Final de las rutas de endpoints de posts
 router.get("/timeline", auth, showTimeline)
 router.get("/", auth, getAllPosts)
 router.post("/", auth, createPost)

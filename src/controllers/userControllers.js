@@ -1,9 +1,6 @@
 
 import User from "../models/User.js";
 import { handleError } from "../utils/handleError.js";
-import bcrypt from "bcrypt"
-
-
 
 export const getUsers = async (req, res) => {
     try {
@@ -33,6 +30,7 @@ export const getProfile = async (req, res) => {
     try {
         const userId = req.tokenData.userId
 
+        //Buscamos un usuario que coincida con el UserId del token y lo mostramos al ser el propio perfil del usuario
         const userProfile = await User.findOne(
             {
                 _id: userId
@@ -75,8 +73,8 @@ export const updateProfile = async (req, res) => {
                 new: true
             }
         )
-
-        if (email) {
+                //Se valida el formato del nuevo correo para no poder añadir valores erroneos.      
+            if (email) {
             const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
             if (!validEmail.test(email)) {

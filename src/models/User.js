@@ -50,5 +50,6 @@ const UserSchema = new Schema(
     }
 )
 
+    //Campos "followedBy" y "following" son creados para albergar cada uno en un array tanto quien sigue como a quien sigue cada usuario.
 const User = model("User", UserSchema)
 export default User

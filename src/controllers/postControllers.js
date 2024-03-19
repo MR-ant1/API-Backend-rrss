@@ -229,8 +229,8 @@ export const likeAPost = async (req, res) => {
         if (userLiking.likedPosts.includes(postId)) {
             const idIndex = userLiking.likedPosts.indexOf(postId)
             userLiking.likedPosts.splice(idIndex, 1)
-            await userLiking.save()
-
+            await userLiking.save()         
+                                        //Arriba se comprueba si el usuario ya dispone de ese post en sus likes y se retira como unliken. Si no se añade como like.
         } else
             userLiking.likedPosts.push(postId)
         await userLiking.save()
@@ -250,7 +250,7 @@ export const likeAPost = async (req, res) => {
             const userIdIndex = postLiked.likes.indexOf(userId)
             postLiked.likes.splice(userIdIndex, 1)
             await postLiked.save()
-
+                                        //Aqui arriba comprobamos si ya tiene el like de ese usuario en su array y se retira. De no ser asi, se añade nuevo like.
             return res.status(200).json({
                 success: true,
                 message: "Disliked"
@@ -283,7 +283,7 @@ export const showTimeline = async (req, res) => {
 
         const userFollows = await User.findById(
             {
-                _id: userSearching
+                _id: userSearching              //Buscamos el usario del token para después poder utilizar los usarios que contenga en "following"
             }
         )
         const followingIds = userFollows.following
