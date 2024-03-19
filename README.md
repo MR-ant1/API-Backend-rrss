@@ -32,6 +32,7 @@ This API allows to create and to log in a user to write posts to share with the 
 - Consulting all existent users info (super_admin)
 - Follow other users accounts.
 - Update a users role to give him more permissions (super_admin)
+- See the timeline with posts from the users you follow
 
 
 ### HOW TO DOWNLOAD AND RUN IT :mag: 
@@ -267,6 +268,9 @@ Erase an entry which belong to your user and you dont want to have anymore. Intr
 
 LIKE A POST : PUT -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/ID
 Introduce the ID in route of the post you wanna like and instantanely, the post will show your like at the same time your profile will show your liked posts.
+
+SHOW USER'S TIMELINE : GET -> https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/timeline
+You can use this endpoint to retrieve all post from the users you previously followed. If you're trying the API with super admin user, look for the fist user in database with ID:"65f00ff9a58ed6fa7fc8d44b" to see how it works.
 
 </details>
 </details>

@@ -63,7 +63,7 @@ export const getOwnPosts = async (req, res) => {
         )
 
         if (ownPosts.length === 0) {
-            throw new Error("You dont have any posts yet") //ME CRASHEA SERVER SI NO HAY POSTS
+            throw new Error("You dont have any posts yet")
         }
 
         res.status(200).json({
@@ -274,5 +274,39 @@ export const likeAPost = async (req, res) => {
             return handleError(res, error.message, 404)
         }
         handleError(res, "Cant like post", 500)
+    }
+}
+
+export const showTimeline = async (req, res) => {
+    try {
+        const userSearching = req.tokenData.userId
+
+        const userFollows = await User.findById(
+        {
+            _id:userSearching
+        }
+        )
+        const followingIds = userFollows.following
+        
+        const timeline = await Post.find(
+        {
+           userId: followingIds         //buscamos posts donde el id del author coincida con los Id's obtenidos del token del usuario que realiza la busqueda
+        }
+        )
+
+        if (timeline.length === 0) {
+            throw new Error("You dont follow anybody yet")
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Timeline retrieved successfully",
+            data: timeline
+        })
+    } catch (error) {
+        if (error.message === "You dont follow anybody yet") {
+            return handleError(res, error.message, 404)
+        }
+        handleError(res, "Cant retrieve timeline", 500)
     }
 }
