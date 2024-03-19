@@ -153,7 +153,7 @@ export const updatePostById = async (req, res) => {
         if (!postId) {
             throw new Error("You need to choose one post to edit!")
         }
-        
+
         const updatedPost = await Post.findOneAndUpdate(
             {
                 _id: postId,
@@ -282,16 +282,16 @@ export const showTimeline = async (req, res) => {
         const userSearching = req.tokenData.userId
 
         const userFollows = await User.findById(
-        {
-            _id:userSearching
-        }
+            {
+                _id: userSearching
+            }
         )
         const followingIds = userFollows.following
-        
+
         const timeline = await Post.find(
-        {
-           userId: followingIds         //buscamos posts donde el id del author coincida con los Id's obtenidos del token del usuario que realiza la busqueda
-        }
+            {
+                userId: followingIds         //buscamos posts donde el id del author coincida con los Id's obtenidos del token del usuario que realiza la busqueda
+            }
         )
 
         if (timeline.length === 0) {

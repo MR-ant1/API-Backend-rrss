@@ -134,20 +134,25 @@ export const followUser = async (req, res) => {
         const userId = req.tokenData.userId
         const followedUser = req.params._id
 
-        const Follower = await User.findOne(
+        if (!followedUser) {
+            throw new Error("This user doesn't exists")
+        }
+        //Debería salir el error superior error si se introduce mal un Id en params. pero, aunque no lo añade y da error, no salta éste como debería
+
+        const follower = await User.findOne(
             {
                 _id: userId
             }
         )
 
-        if (Follower.following.includes(followedUser)) {
-            const followIndex = Follower.following.indexOf(followedUser)
-            Follower.following.splice(followIndex, 1)
-            await Follower.save()
+        if (follower.following.includes(followedUser)) {
+            const followIndex = follower.following.indexOf(followedUser)
+            follower.following.splice(followIndex, 1)
+            await follower.save() //Busca si el seguidor ya tiene al usuario seguido en su lista y si es asi, busca su indice en el array y lo elimina.
 
         } else
-            Follower.following.push(followedUser)
-        await Follower.save()
+            follower.following.push(followedUser)   // Si la sentencia anterior no se cumple, entonces añade el id del usuario seguido al array de gente seguida
+        await follower.save()
 
 
         const userFollowed = await User.findOne(
@@ -156,13 +161,9 @@ export const followUser = async (req, res) => {
             }
         )
 
-        if (!followedUser) {
-            throw new Error("User not found")
-        }
-
         if (userFollowed.followedBy.includes(userId)) {
             const followIndex = userFollowed.followedBy.indexOf(userId)
-            userFollowed.followedBy.splice(followIndex, 1)
+            userFollowed.followedBy.splice(followIndex, 1) //Si el id del usuario seguido ya encuentra en su array al seguidor, lo elimina haciendose unfollow
             await userFollowed.save()
 
             return res.status(200).json({
@@ -171,7 +172,6 @@ export const followUser = async (req, res) => {
 
             })
         } else
-
             userFollowed.followedBy.push(userId)
         await userFollowed.save()
 
@@ -184,7 +184,7 @@ export const followUser = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        if (error.message === "User not found") {
+        if (error.message === "This user doesn't exists") {
             return handleError(res, error.message, 404)
         }
         handleError(res, "Cant follow user", 500)
@@ -203,26 +203,26 @@ export const updateRol = async (req, res) => {
 
         const updatedRol = await User.findOneAndUpdate(
             {
-                _id:userUpdated
+                _id: userUpdated
             },
             {
-                role:newRole
+                role: newRole
             },
             {
-                new:true
+                new: true
             }
         )
-       
-        if (newRole === "user" || newRole ==="admin" || newRole ==="super_admin") {
-           res.status(200).json({
-            success: true,
-            message: "Role updated successfully",
-            data: updatedRol
-        }) 
-        }else throw new Error("Role must have a valid name")
+
+        if (newRole === "user" || newRole === "admin" || newRole === "super_admin") {
+            res.status(200).json({
+                success: true,
+                message: "Role updated successfully",
+                data: updatedRol
+            })
+        } else throw new Error("Role must have a valid name")
 
 
-        
+
 
     } catch (error) {
         if (error.message === "Login to update role") {
