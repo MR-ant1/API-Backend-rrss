@@ -16,7 +16,6 @@ dbconnection()
     .then(() => {
         console.log("Database connected")
 
-
         app.listen(PORT, () => {
             console.log(`server is running in port ${PORT}`);
         })

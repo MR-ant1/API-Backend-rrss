@@ -1,5 +1,4 @@
 
-
 import Post from "../../models/Post.js"
 import mongoose, { connect, disconnect } from "mongoose"
 import { dbconnection } from "../db.js";
@@ -46,8 +45,8 @@ export const postSeeder = async (req, res) => {
         const fakePosts = Array.from({ length: 40 }, generateFakePost);
         await Post.create(fakePosts);
     } catch (error) {
-       console.log(error)
-    } finally {disconnect(dbconnection())}
+        console.log(error)
+    } finally { disconnect(dbconnection()) }
 
 }
 

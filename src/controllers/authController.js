@@ -1,3 +1,4 @@
+
 import bcrypt from "bcrypt"
 import User from "../models/User.js"
 import jwt from "jsonwebtoken";
@@ -53,7 +54,6 @@ export const register = async (req, res) => {
         }
         handleError(res, "Cant register user", 500)
     }
-
 }
 
 export const login = async (req, res) => {
@@ -97,7 +97,7 @@ export const login = async (req, res) => {
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: "200h" //bajar despues tiempo
+                expiresIn: "3h"
             }
         )
 
