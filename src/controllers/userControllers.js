@@ -191,3 +191,46 @@ export const followUser = async (req, res) => {
     }
 }
 
+export const updateRol = async (req, res) => {
+    try {
+        const userId = req.tokenData.userId
+        const userUpdated = req.params._id
+        const newRole = req.body.role
+
+        if (!userId) {
+            throw new Error("Login to update role")
+        }
+
+        const updatedRol = await User.findOneAndUpdate(
+            {
+                _id:userUpdated
+            },
+            {
+                role:newRole
+            },
+            {
+                new:true
+            }
+        )
+       
+        if (newRole === "user" || newRole ==="admin" || newRole ==="super_admin") {
+           res.status(200).json({
+            success: true,
+            message: "Role updated successfully",
+            data: updatedRol
+        }) 
+        }else throw new Error("Role must have a valid name")
+
+
+        
+
+    } catch (error) {
+        if (error.message === "Login to update role") {
+            return handleError(res, error.message, 404)
+        }
+        if (error.message === "Role must have a valid name") {
+            return handleError(res, error.message, 400)
+        }
+        handleError(res, "Couldnt update role", 500)
+    }
+}
