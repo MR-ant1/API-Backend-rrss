@@ -41,7 +41,9 @@ export const register = async (req, res) => {
             {
                 success: true,
                 message: "User registered successfully",
-                data: newUser
+                firstName:firstName,
+                lastName:lastName,
+                email: email
             }
         )
     } catch (error) {
