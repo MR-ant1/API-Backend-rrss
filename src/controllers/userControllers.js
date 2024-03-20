@@ -4,7 +4,7 @@ import { handleError } from "../utils/handleError.js";
 
 export const getUsers = async (req, res) => {
     try {
-        const userList = await User.find()
+        const userList = await User.find({}, "-password")
 
         if (!userList) {
             throw new Error("There is no users")
@@ -68,11 +68,8 @@ export const updateProfile = async (req, res) => {
                 firstName,
                 lastName,
                 email
-            },
-            {
-                new: true
             }
-        )
+        ).select("-password")
         //Se valida el formato del nuevo correo para no poder añadir valores erroneos.      
         if (email) {
             const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -132,13 +129,18 @@ export const followUser = async (req, res) => {
         const userId = req.tokenData.userId
         const followedUser = req.params._id
 
+        //Evitamos que un usuario pueda seguirse a sí mismo
+        if (userId === followedUser) {
+            throw new Error("You can't follow yourself")
+        }
+
         const userFollowed = await User.findOne(
             {
                 _id: followedUser
-            }
+            },console.log(followedUser)
         )
-
-        //Debería salir este error si se introduce mal un Id en params. pero, aunque no lo añade y da error 500, no salta este mensaje como debería
+        
+        //Debería salir este error si se introduce un Id inexistente en params. pero, aunque no lo añade y da error 500, no salta este mensaje como debería
         if (!userFollowed) {
             throw new Error("This user doesn't exists")
         }
@@ -173,7 +175,6 @@ export const followUser = async (req, res) => {
             follower.following.push(followedUser)   // Si la sentencia anterior no se cumple, entonces añade el id del usuario seguido al array de gente seguida
         await follower.save()
 
-
         res.status(200).json({
             success: true,
             message: "Followed!"
@@ -181,8 +182,10 @@ export const followUser = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error)
         if (error.message === "This user doesn't exists") {
+            return handleError(res, error.message, 400)
+        }
+        if (error.message === "You can't follow yourself") {
             return handleError(res, error.message, 400)
         }
         handleError(res, "Cant follow user", 500)
