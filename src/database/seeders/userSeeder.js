@@ -11,7 +11,7 @@ const generateFakeUser = () => {
     userFaker.firstName = faker.person.firstName();
     userFaker.lastName = faker.person.lastName();
     userFaker.email = faker.internet.email()
-    userFaker.password = bcrypt.hashSync("12345678", 5);
+    userFaker.password = bcrypt.hashSync("aA123456", 5);
     return userFaker;
 }
 
@@ -23,7 +23,7 @@ export const userSeeder = async (req, res) => {
                 firstName: "user",
                 lastName: "user",
                 email: "user@user.com",
-                password: bcrypt.hashSync('12345678', 10),
+                password: bcrypt.hashSync('aA123456', 10),
                 role: "user",
                 _id: new mongoose.Types.ObjectId("65f00ff4a58ed6fa7fc8d449")
             },
@@ -32,7 +32,7 @@ export const userSeeder = async (req, res) => {
                 firstName: "admin",
                 lastName: "admin",
                 email: "admin@admin.com",
-                password: bcrypt.hashSync('12345678', 10),
+                password: bcrypt.hashSync('aA123456', 10),
                 role: "admin",
                 _id: new mongoose.Types.ObjectId("65f00ff9a58ed6fa7fc8d44b")
             },
@@ -41,7 +41,7 @@ export const userSeeder = async (req, res) => {
                 firstName: "super_admin",
                 lastName: "super",
                 email: "superadmin@superadmin.com",
-                password: bcrypt.hashSync('12345678', 10),
+                password: bcrypt.hashSync('aA123456', 10),
                 role: "super_admin",
                 _id: new mongoose.Types.ObjectId("65f00ffea58ed6fa7fc8d44d")
             }

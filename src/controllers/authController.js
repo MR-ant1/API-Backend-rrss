@@ -12,10 +12,12 @@ export const register = async (req, res) => {
         const email = req.body.email
         const password = req.body.password
 
+        //Comprobamos que todos los campos hayan sido rellenados (lastName es opcional)
         if (!firstName || !email || !password) {
             throw new Error("all fields are mandatory")
         }
 
+        //Comprobación de que la contraseña tiene un tamaño adecuado y debajo de esto, comprobación del formato de correo introducido
         if (password.length < 8 || password.length > 20) {
             throw new Error("Password must contain between 8 and 20 characters")
         }
@@ -39,7 +41,9 @@ export const register = async (req, res) => {
             {
                 success: true,
                 message: "User registered successfully",
-                data: newUser
+                firstName:firstName,
+                lastName:lastName,
+                email: email
             }
         )
     } catch (error) {
@@ -65,6 +69,7 @@ export const login = async (req, res) => {
             throw new Error("email and password are mandatories")
         }
 
+            //Validación del formato de correo introducido
         const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         if (!validEmail.test(email)) {
             return res.status(400).json(
@@ -74,7 +79,7 @@ export const login = async (req, res) => {
                 }
             )
         }
-
+            //Se busca el email unico del usuario en la DB para, si existe, comparar constraseñas y comprobar si es el susodicho.
         const user = await User.findOne(
             {
                 email: email
@@ -84,12 +89,14 @@ export const login = async (req, res) => {
             throw new Error("Email or password invalid")
         }
 
+            //Validación de contraseña introducida donde es comparada con la almacenado en DB
         const isValidPassword = bcrypt.compareSync(password, user.password)
 
         if (!isValidPassword) {
             throw new Error("Email or password invalid")
         }
 
+            //Creamos la variable token que contendrá el userId y el role de cada usuario logeado
         const token = jwt.sign(
             {
                 userId: user._id,

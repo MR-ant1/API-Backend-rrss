@@ -4,6 +4,7 @@ import { login, register } from "../controllers/authController.js";
 
 const router = Router()
 
+//Final de las rutas de endpoints de autentificación
 router.post("/register", register)
 router.post("/login", login)
 

@@ -1,13 +1,10 @@
 
 import User from "../models/User.js";
 import { handleError } from "../utils/handleError.js";
-import bcrypt from "bcrypt"
-
-
 
 export const getUsers = async (req, res) => {
     try {
-        const userList = await User.find()
+        const userList = await User.find({}, "-password")
 
         if (!userList) {
             throw new Error("There is no users")
@@ -33,6 +30,7 @@ export const getProfile = async (req, res) => {
     try {
         const userId = req.tokenData.userId
 
+        //Buscamos un usuario que coincida con el UserId del token y lo mostramos al ser el propio perfil del usuario
         const userProfile = await User.findOne(
             {
                 _id: userId
@@ -70,12 +68,9 @@ export const updateProfile = async (req, res) => {
                 firstName,
                 lastName,
                 email
-            },
-            {
-                new: true
             }
-        )
-
+        ).select("-password")
+        //Se valida el formato del nuevo correo para no poder añadir valores erroneos.      
         if (email) {
             const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
@@ -134,32 +129,21 @@ export const followUser = async (req, res) => {
         const userId = req.tokenData.userId
         const followedUser = req.params._id
 
-        if (!followedUser) {
-            throw new Error("This user doesn't exists")
+        //Evitamos que un usuario pueda seguirse a sí mismo
+        if (userId === followedUser) {
+            throw new Error("You can't follow yourself")
         }
-        //Debería salir el error superior error si se introduce mal un Id en params. pero, aunque no lo añade y da error, no salta éste como debería
-
-        const follower = await User.findOne(
-            {
-                _id: userId
-            }
-        )
-
-        if (follower.following.includes(followedUser)) {
-            const followIndex = follower.following.indexOf(followedUser)
-            follower.following.splice(followIndex, 1)
-            await follower.save() //Busca si el seguidor ya tiene al usuario seguido en su lista y si es asi, busca su indice en el array y lo elimina.
-
-        } else
-            follower.following.push(followedUser)   // Si la sentencia anterior no se cumple, entonces añade el id del usuario seguido al array de gente seguida
-        await follower.save()
-
 
         const userFollowed = await User.findOne(
             {
                 _id: followedUser
-            }
+            },console.log(followedUser)
         )
+        
+        //Debería salir este error si se introduce un Id inexistente en params. pero, aunque no lo añade y da error 500, no salta este mensaje como debería
+        if (!userFollowed) {
+            throw new Error("This user doesn't exists")
+        }
 
         if (userFollowed.followedBy.includes(userId)) {
             const followIndex = userFollowed.followedBy.indexOf(userId)
@@ -176,6 +160,21 @@ export const followUser = async (req, res) => {
         await userFollowed.save()
 
 
+        const follower = await User.findOne(
+            {
+                _id: userId
+            }
+        )
+
+        if (follower.following.includes(followedUser)) {
+            const followIndex = follower.following.indexOf(followedUser)
+            follower.following.splice(followIndex, 1)
+            await follower.save() //Busca si el seguidor ya tiene al usuario seguido en su lista y si es asi, busca su indice en el array y lo elimina.
+
+        } else
+            follower.following.push(followedUser)   // Si la sentencia anterior no se cumple, entonces añade el id del usuario seguido al array de gente seguida
+        await follower.save()
+
         res.status(200).json({
             success: true,
             message: "Followed!"
@@ -183,9 +182,11 @@ export const followUser = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error)
         if (error.message === "This user doesn't exists") {
-            return handleError(res, error.message, 404)
+            return handleError(res, error.message, 400)
+        }
+        if (error.message === "You can't follow yourself") {
+            return handleError(res, error.message, 400)
         }
         handleError(res, "Cant follow user", 500)
     }

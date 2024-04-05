@@ -7,6 +7,7 @@ import { getOtherUserPosts } from "../controllers/postControllers.js";
 
 const router = Router()
 
+//Final de las rutas de endpoints de users
 router.get("/", auth, isSuperAdmin, getUsers)
 router.get("/profile", auth, getProfile)
 router.get("/posts/:userId", auth, getOtherUserPosts)

@@ -9,6 +9,7 @@ The target of this proyect is to recreate the backend of a basic social network 
     - [INDEX :open\_file\_folder:](#index-open_file_folder)
     - [STACK :wrench:](#stack-wrench)
     - [ABOUT API :blue\_book:](#about-api-blue_book)
+    - [DB diagram :clipboard:](#db-diagram-clipboard)
     - [HOW TO DOWNLOAD AND RUN IT :mag:](#how-to-download-and-run-it-mag)
     - [DATABASE DESIGN :computer:](#database-design-computer)
     - [AUTHOR :pencil2:](#author-pencil2)
@@ -34,6 +35,10 @@ This API allows to create and to log in a user to write posts to share with the 
 - Update a users role to give him more permissions (super_admin)
 - See the timeline with posts from the users you follow
 
+
+### DB diagram :clipboard:
+
+![alt text](img/DBdiagram.png)
 
 ### HOW TO DOWNLOAD AND RUN IT :mag: 
 

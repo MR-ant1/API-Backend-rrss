@@ -1,6 +1,7 @@
 
 import { Schema, model } from "mongoose";
 
+//Creamos el campo "likes" para albergar en un array los Id's de usuarios que le den like a cada post
 const postSchema = new Schema(
     {
         title: {
