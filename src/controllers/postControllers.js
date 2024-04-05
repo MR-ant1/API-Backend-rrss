@@ -110,28 +110,32 @@ export const createPost = async (req, res) => {
     try {
 
         const userId = req.tokenData.userId;
+        const authorFirstName = req.tokenData.authorFirstName
+        const authorLastName = req.tokenData.authorLastName
         const { title, description } = req.body;
-
-        if (!userId) {
+       
+        if (!userId ) {
             throw new Error("You need to login to create a post")
         }
         if (!title) {
             throw new Error("Title is mandatory")
         }
-
         const newPost = await Post.create(
             {
                 title: title,
                 description: description,
-                userId: userId
+                userId: userId,
+                authorFirstName: authorFirstName,
+                authorLastName: authorLastName
             }
         )
 
         res.status(201).json({
             success: true,
-            message: "Post crated succesfully!",
+            message: "Post created succesfully!",
             data: newPost
         })
+        
     } catch (error) {
         if (error.message === "You need to login to create a post") {
             return handleError(res, error.message, 404)

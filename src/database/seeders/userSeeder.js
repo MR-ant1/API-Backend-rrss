@@ -48,7 +48,7 @@ export const userSeeder = async (req, res) => {
 
         ])
 
-        const fakeUsers = Array.from({ length: 20 }, generateFakeUser);
+        const fakeUsers = Array.from({ length: 10 }, generateFakeUser);
         await User.create(fakeUsers)
 
 

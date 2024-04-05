@@ -109,7 +109,8 @@ export const deleteUserById = async (req, res) => {
             {
                 _id: userId
             }
-        )
+        ).select("-password")
+
         res.status(200).json({
             success: true,
             message: "User deleted successfully",
@@ -212,7 +213,8 @@ export const updateRol = async (req, res) => {
             {
                 new: true
             }
-        )
+        ).select("-password")
+       
 
         if (newRole === "user" || newRole === "admin" || newRole === "super_admin") {
             res.status(200).json({
@@ -230,6 +232,9 @@ export const updateRol = async (req, res) => {
             return handleError(res, error.message, 404)
         }
         if (error.message === "Role must have a valid name") {
+            return handleError(res, error.message, 400)
+        }
+        if (error.message === "Can downgrade another super_admin") {
             return handleError(res, error.message, 400)
         }
         handleError(res, "Couldnt update role", 500)
