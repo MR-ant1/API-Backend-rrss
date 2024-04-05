@@ -257,7 +257,7 @@ export const likeAPost = async (req, res) => {
                                         //Aqui arriba comprobamos si ya tiene el like de ese usuario en su array y se retira. De no ser asi, se añade nuevo like.
             return res.status(200).json({
                 success: true,
-                message: "Disliked"
+                message: "Dislike"
 
             })
         } else
@@ -268,7 +268,7 @@ export const likeAPost = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Liked and post added to likes"
+            message: "Liked!"
 
         })
 

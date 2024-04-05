@@ -38,8 +38,8 @@ export const userSeeder = async (req, res) => {
             },
 
             {
-                firstName: "super_admin",
-                lastName: "super",
+                firstName: "super",
+                lastName: "admin",
                 email: "superadmin@superadmin.com",
                 password: bcrypt.hashSync('aA123456', 10),
                 role: "super_admin",
