@@ -8,7 +8,7 @@ import { faker } from "@faker-js/faker"
 const generateFakePost = () => {
     const postFaker = new Post();
     postFaker.title = faker.lorem.sentence();
-    postFaker.description = faker.lorem.text();
+    postFaker.description = faker.lorem.sentence(8);
     postFaker.userId = new mongoose.Types.ObjectId("65f00ffea58ed6fa7fc8d44d")
     postFaker.authorFirstName = faker.person.firstName("super")
     postFaker.authorLastName = faker.person.lastName("admin")
