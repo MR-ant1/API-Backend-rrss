@@ -38,8 +38,8 @@ export const userSeeder = async (req, res) => {
             },
 
             {
-                firstName: "super_admin",
-                lastName: "super",
+                firstName: "super",
+                lastName: "admin",
                 email: "superadmin@superadmin.com",
                 password: bcrypt.hashSync('aA123456', 10),
                 role: "super_admin",
@@ -48,7 +48,7 @@ export const userSeeder = async (req, res) => {
 
         ])
 
-        const fakeUsers = Array.from({ length: 20 }, generateFakeUser);
+        const fakeUsers = Array.from({ length: 10 }, generateFakeUser);
         await User.create(fakeUsers)
 
 

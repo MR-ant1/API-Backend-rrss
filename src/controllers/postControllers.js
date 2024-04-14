@@ -62,7 +62,7 @@ export const getOwnPosts = async (req, res) => {
             }
         )
 
-        if (ownPosts.length === 0) {
+        if (!ownPosts) {
             throw new Error("You dont have any posts yet")
         }
 
@@ -110,33 +110,37 @@ export const createPost = async (req, res) => {
     try {
 
         const userId = req.tokenData.userId;
+        const authorFirstName = req.tokenData.authorFirstName
+        const authorLastName = req.tokenData.authorLastName
         const { title, description } = req.body;
-
-        if (!userId) {
+       
+        if (!userId ) {
             throw new Error("You need to login to create a post")
         }
-        if (!title) {
-            throw new Error("Title is mandatory")
+        if (!title || !description) {
+            throw new Error("All fields are required")
         }
-
         const newPost = await Post.create(
             {
                 title: title,
                 description: description,
-                userId: userId
+                userId: userId,
+                authorFirstName: authorFirstName,
+                authorLastName: authorLastName
             }
         )
 
         res.status(201).json({
             success: true,
-            message: "Post crated succesfully!",
+            message: "Post created succesfully!",
             data: newPost
         })
+        
     } catch (error) {
         if (error.message === "You need to login to create a post") {
             return handleError(res, error.message, 404)
         }
-        if (error.message === "Title is mandatory") {
+        if (error.message === "All fields are required") {
             return handleError(res, error.message, 400)
         }
         handleError(res, "Cant create post", 500)
@@ -174,7 +178,7 @@ export const updatePostById = async (req, res) => {
 
         res.status(200).json({
             successs: true,
-            messsage: "Post updated successfully",
+            message: "Post updated successfully",
             data: updatedPost
         })
     } catch (error) {
@@ -253,8 +257,8 @@ export const likeAPost = async (req, res) => {
                                         //Aqui arriba comprobamos si ya tiene el like de ese usuario en su array y se retira. De no ser asi, se añade nuevo like.
             return res.status(200).json({
                 success: true,
-                message: "Disliked"
-
+                message: "Dislike",
+                data: postLiked
             })
         } else
 
@@ -264,8 +268,8 @@ export const likeAPost = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Liked and post added to likes"
-
+            message: "Like",
+            data: postLiked
         })
 
     } catch (error) {

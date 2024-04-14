@@ -7,3 +7,4 @@ const launchSeeder = async () => {
   await postSeeder();
 }
 launchSeeder();
+console.log('seeders loaded succesfully')

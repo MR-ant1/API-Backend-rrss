@@ -13,8 +13,8 @@ export const register = async (req, res) => {
         const password = req.body.password
 
         //Comprobamos que todos los campos hayan sido rellenados (lastName es opcional)
-        if (!firstName || !email || !password) {
-            throw new Error("all fields are mandatory")
+        if (!firstName || !email || !lastName || !password) {
+            throw new Error("Todos los campos son obligatorios")
         }
 
         //Comprobación de que la contraseña tiene un tamaño adecuado y debajo de esto, comprobación del formato de correo introducido
@@ -40,14 +40,14 @@ export const register = async (req, res) => {
         res.status(201).json(
             {
                 success: true,
-                message: "User registered successfully",
+                message: "Usuario creado correctamente",
                 firstName:firstName,
                 lastName:lastName,
                 email: email
             }
         )
     } catch (error) {
-        if (error.message === "all fields are mandatory") {
+        if (error.message === "Todos los campos son obligatorios") {
             return handleError(res, error.message, 404)
         }
         if (error.message === "Password must contain between 8 and 20 characters") {
@@ -66,7 +66,7 @@ export const login = async (req, res) => {
         const password = req.body.password
 
         if (!email || !password) {
-            throw new Error("email and password are mandatories")
+            throw new Error("Se requieren todos los campos")
         }
 
             //Validación del formato de correo introducido
@@ -100,23 +100,25 @@ export const login = async (req, res) => {
         const token = jwt.sign(
             {
                 userId: user._id,
-                role: user.role
+                role: user.role,
+                authorFirstName: user.firstName,
+                authorLastName: user.lastName
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: "3h"
+                expiresIn: "40h"
             }
         )
 
         res.status(200).json({
             success: true,
-            message: "User logged succesfully",
+            message: "Usuario logueado correctamente",
             token: token
         })
 
     } catch (error) {
 
-        if (error.message === "email and password are mandatories") {
+        if (error.message === "Se requieren todos los campos") {
             return handleError(res, error.message, 400)
         }
         if (error.message === "Email format is not valid") {
