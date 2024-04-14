@@ -270,7 +270,6 @@ export const likeAPost = async (req, res) => {
             success: true,
             message: "Like",
             data: postLiked
-
         })
 
     } catch (error) {
