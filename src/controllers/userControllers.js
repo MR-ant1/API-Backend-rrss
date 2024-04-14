@@ -138,7 +138,7 @@ export const followUser = async (req, res) => {
         const userFollowed = await User.findOne(
             {
                 _id: followedUser
-            },console.log(followedUser)
+            }
         )
         
         //Debería salir este error si se introduce un Id inexistente en params. pero, aunque no lo añade y da error 500, no salta este mensaje como debería

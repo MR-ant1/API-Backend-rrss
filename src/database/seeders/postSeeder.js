@@ -10,8 +10,8 @@ const generateFakePost = () => {
     postFaker.title = faker.lorem.sentence();
     postFaker.description = faker.lorem.sentence(8);
     postFaker.userId = new mongoose.Types.ObjectId("65f00ffea58ed6fa7fc8d44d")
-    postFaker.authorFirstName = faker.person.firstName("super")
-    postFaker.authorLastName = faker.person.lastName("admin")
+    postFaker.authorFirstName = ("super")
+    postFaker.authorLastName = ("admin")
     return postFaker;
 }
 

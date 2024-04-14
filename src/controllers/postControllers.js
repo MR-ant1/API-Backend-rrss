@@ -62,7 +62,7 @@ export const getOwnPosts = async (req, res) => {
             }
         )
 
-        if (ownPosts.length === 0) {
+        if (!ownPosts) {
             throw new Error("You dont have any posts yet")
         }
 
@@ -117,8 +117,8 @@ export const createPost = async (req, res) => {
         if (!userId ) {
             throw new Error("You need to login to create a post")
         }
-        if (!title) {
-            throw new Error("Title is mandatory")
+        if (!title || !description) {
+            throw new Error("All fields are required")
         }
         const newPost = await Post.create(
             {
@@ -140,7 +140,7 @@ export const createPost = async (req, res) => {
         if (error.message === "You need to login to create a post") {
             return handleError(res, error.message, 404)
         }
-        if (error.message === "Title is mandatory") {
+        if (error.message === "All fields are required") {
             return handleError(res, error.message, 400)
         }
         handleError(res, "Cant create post", 500)
@@ -178,7 +178,7 @@ export const updatePostById = async (req, res) => {
 
         res.status(200).json({
             successs: true,
-            messsage: "Post updated successfully",
+            message: "Post updated successfully",
             data: updatedPost
         })
     } catch (error) {
@@ -257,8 +257,8 @@ export const likeAPost = async (req, res) => {
                                         //Aqui arriba comprobamos si ya tiene el like de ese usuario en su array y se retira. De no ser asi, se añade nuevo like.
             return res.status(200).json({
                 success: true,
-                message: "Dislike"
-
+                message: "Dislike",
+                data: postLiked
             })
         } else
 
@@ -268,7 +268,8 @@ export const likeAPost = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Liked!"
+            message: "Like",
+            data: postLiked
 
         })
 
