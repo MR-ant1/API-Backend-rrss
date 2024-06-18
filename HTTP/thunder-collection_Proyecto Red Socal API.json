@@ -1,8 +1,9 @@
 {
-    "client": "Thunder Client",
+    "clientName": "Thunder Client",
     "collectionName": "Proyecto Red Socal API",
-    "dateExported": "2024-03-20T11:38:40.475Z",
-    "version": "1.1",
+    "collectionId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+    "dateExported": "2024-06-18T12:20:23.360Z",
+    "version": "1.2",
     "folders": [
         {
             "_id": "4e632e14-02ff-4b24-bafb-4046cf98f890",
@@ -32,344 +33,295 @@
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
             "name": "GET USERS",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users",
+            "url": "api-postit.up.railway.app/api/users",
             "method": "GET",
             "sortNum": 10000,
             "created": "2024-03-09T13:07:41.549Z",
-            "modified": "2024-03-20T11:37:47.825Z",
+            "modified": "2024-06-18T12:17:43.364Z",
             "headers": [],
-            "params": [],
-            "reqType": "get",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA5MzI2MjQsImV4cCI6MTcxMDk0MzQyNH0.vscUk8YA6sBoV35Oau_A_0Wcrues-dbe-f6fGAJWf-4"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTg3MTMwNTQsImV4cCI6MTcxODg1NzA1NH0.2xr5Nu6z8Je0zxwjxJ-qlNiltJJSGKP1GjagLUmd_oQ"
+            }
         },
         {
             "_id": "bc19aa4e-76de-412e-af82-d7279901f670",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
             "name": "DELETE USER BY ID",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/",
+            "url": "api-postit.up.railway.app/api/users/65f320f15ecbfb3db963b8e4",
             "method": "DELETE",
             "sortNum": 20000,
             "created": "2024-03-09T13:08:16.748Z",
-            "modified": "2024-03-12T17:00:22.971Z",
+            "modified": "2024-06-18T12:18:25.542Z",
             "headers": [],
-            "params": [],
-            "reqType": "del",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTAyNjI0ODIsImV4cCI6MTcxMDk4MjQ4Mn0.TLnSbnSVQ_IIbbi6E3hH9q87IbVoGBtwBrY61j3ol5E"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTIzMjY0NjEsImV4cCI6MTcxMjMzNzI2MX0.pHIMUjVWx1srdFIeLa5FsXh8U6SYRDJFCA4Y3KsVnqA"
+            }
         },
         {
             "_id": "167a4a6a-bb91-4b67-afe0-8a14e08b68c7",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e7c66a6-0c95-48d3-9db5-c69840cad183",
             "name": "LOGIN",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/login",
+            "url": "api-postit.up.railway.app/api/auth/login",
             "method": "POST",
             "sortNum": 30000,
             "created": "2024-03-09T13:08:46.078Z",
-            "modified": "2024-03-20T11:37:00.291Z",
+            "modified": "2024-06-18T11:57:18.996Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"superadmin@superadmin.com\",\n  \"password\": \"12345678\"\n}",
+                "raw": "{\n  \"email\": \"superadmin@superadmin.com\",\n  \"password\": \"aA123456\"\n}",
                 "form": []
-            },
-            "reqType": "post",
-            "tests": []
+            }
         },
         {
             "_id": "c365c295-b191-4798-947d-ae12e6daf030",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e7c66a6-0c95-48d3-9db5-c69840cad183",
             "name": "REGISTER",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/auth/register",
+            "url": "api-postit.up.railway.app/api/auth/register",
             "method": "POST",
             "sortNum": 40000,
             "created": "2024-03-09T13:09:51.668Z",
-            "modified": "2024-03-20T11:37:05.258Z",
+            "modified": "2024-06-18T12:18:06.313Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"firstName\": \"ushger\",\n  \"lastName\": \"Usario\",\n  \"email\": \"prufdsffh@user.com\",\n  \"password\": \"12345678\"\n}",
+                "raw": "{\n  \"firstName\": \"usher\",\n  \"lastName\": \"Usario\",\n  \"email\": \"prufdsffh@uer.com\",\n  \"password\": \"12345678\"\n}",
                 "form": []
-            },
-            "reqType": "post",
-            "tests": []
+            }
         },
         {
             "_id": "cd95f202-a1bd-4e23-813e-eaa9677e07bb",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
             "name": "UPDATE PROFILE",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile",
+            "url": "api-postit.up.railway.app/api/users/profile",
             "method": "PUT",
             "sortNum": 50000,
             "created": "2024-03-09T15:21:14.435Z",
-            "modified": "2024-03-20T11:05:09.141Z",
+            "modified": "2024-06-18T12:18:32.858Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"firstName\": \"Usuario\",\n  \"lastName\": \"ACtualizado\",\n  \"email\": \"superadmin@superadmin.com\"\n}",
+                "raw": "{\n  \"firstName\": \"super\",\n  \"lastName\": \"admino\",\n  \"email\": \"superadmin@superadmin.com\"\n}",
                 "form": []
             },
-            "reqType": "put",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA1MTU4MzgsImV4cCI6MTcxMTIzNTgzOH0.FngVFQoVN6uUmM8rXr82lSron_GonCkjoMnvZvAkezk"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI3NjUyODAsImV4cCI6MTcxMjkwOTI4MH0.caJHt_yllpX50CEmXqCNb3inJj9Rxp11REY5slVfNU4"
+            }
         },
         {
             "_id": "cf2fd72a-3309-407d-acb6-690ebf535d4e",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
             "name": "GET PROFILE",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/profile",
+            "url": "api-postit.up.railway.app/api/users/profile",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-03-09T15:58:51.791Z",
-            "modified": "2024-03-20T11:37:28.579Z",
+            "modified": "2024-06-18T12:18:42.357Z",
             "headers": [],
-            "params": [],
-            "reqType": "get",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA5MzI2MjQsImV4cCI6MTcxMDk0MzQyNH0.vscUk8YA6sBoV35Oau_A_0Wcrues-dbe-f6fGAJWf-4"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI2NDY3MDksImV4cCI6MTcxMjY1NzUwOX0.4D6T7C1TxOn5JhB-FFKVRf7lDhive5omLQUgHg0mUp8"
+            }
         },
         {
             "_id": "9999649c-e0d7-487e-b7a0-7e1bfab23e5c",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
             "name": "CREATE POST",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts",
+            "url": "api-postit.up.railway.app/api/posts",
             "method": "POST",
             "sortNum": 70000,
             "created": "2024-03-09T18:03:25.031Z",
-            "modified": "2024-03-12T17:03:28.904Z",
+            "modified": "2024-06-18T12:19:11.759Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"title\": \"hiii\",\n  \"description\": \"example post\"\n}",
+                "raw": "{\n  \"title\": \"hiihuh\",\n  \"description\": \"dnjhia\"\n}",
                 "form": []
             },
-            "reqType": "post",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTAyNjI0ODIsImV4cCI6MTcxMDk4MjQ4Mn0.TLnSbnSVQ_IIbbi6E3hH9q87IbVoGBtwBrY61j3ol5E"
-            },
-            "tests": []
-        },
-        {
-            "_id": "a8b2a2f7-8fa1-4968-878f-b8588294556e",
-            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
-            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
-            "name": "GET ALL POSTS",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts",
-            "method": "GET",
-            "sortNum": 80000,
-            "created": "2024-03-10T10:03:42.320Z",
-            "modified": "2024-03-19T14:37:13.063Z",
-            "headers": [],
-            "params": [],
-            "reqType": "get",
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NTg3MzMsImV4cCI6MTcxMDg2OTUzM30.OjoNeDensCfBe-u-Bl8ttvSOI8UKMv4vrgODP-VD0WM"
-            },
-            "tests": []
-        },
-        {
-            "_id": "8c3b8d47-e051-4ad6-83e6-b2512dcd0087",
-            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
-            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
-            "name": "GET POST BY ID",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/65f320f35ecbfb3db963b90f",
-            "method": "GET",
-            "sortNum": 90000,
-            "created": "2024-03-10T10:11:41.434Z",
-            "modified": "2024-03-19T14:36:41.447Z",
-            "headers": [],
-            "params": [],
-            "reqType": "get",
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NTg3MzMsImV4cCI6MTcxMDg2OTUzM30.OjoNeDensCfBe-u-Bl8ttvSOI8UKMv4vrgODP-VD0WM"
-            },
-            "tests": []
-        },
-        {
-            "_id": "b694a9a1-2650-463b-badf-4f6593de90f1",
-            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
-            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
-            "name": "LIKE A POST",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/like/65f320f35ecbfb3db963b912",
-            "method": "PUT",
-            "sortNum": 95000,
-            "created": "2024-03-10T20:58:10.394Z",
-            "modified": "2024-03-19T15:09:33.279Z",
-            "headers": [],
-            "params": [],
-            "reqType": "put",
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYzMjBmMTVlY2JmYjNkYjk2M2I4ZGYiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxMDg2MDg2NSwiZXhwIjoxNzEwODcxNjY1fQ.EDh5GGmwz6CM6852992jjKseeWSynTyJCk0-K0NzCEY"
-            },
-            "tests": []
-        },
-        {
-            "_id": "14a0d077-8538-4b23-895b-4bd801c476e2",
-            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
-            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
-            "name": "GET MY OWN POSTS",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/own",
-            "method": "GET",
-            "sortNum": 100000,
-            "created": "2024-03-10T10:20:55.490Z",
-            "modified": "2024-03-19T14:35:53.491Z",
-            "headers": [],
-            "params": [],
-            "reqType": "get",
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NTg3MzMsImV4cCI6MTcxMDg2OTUzM30.OjoNeDensCfBe-u-Bl8ttvSOI8UKMv4vrgODP-VD0WM"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
         },
         {
             "_id": "93f352d6-46b3-4f30-8025-27247f9f3817",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
             "name": "GET OTHER USER POSTS",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/posts/65f00ff9a58ed6fa7fc8d44b",
+            "url": "api-postit.up.railway.app/api/users/posts/65f00ff9a58ed6fa7fc8d44b",
             "method": "GET",
-            "sortNum": 110000,
+            "sortNum": 75000,
             "created": "2024-03-10T10:50:34.820Z",
-            "modified": "2024-03-14T08:18:08.676Z",
+            "modified": "2024-06-18T12:19:19.997Z",
             "headers": [],
-            "params": [],
-            "reqType": "get",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA0MDQxMDEsImV4cCI6MTcxMTEyNDEwMX0.ZhI5j2plUk3LGDKUUTC3e4LXFDvzHYpAiRPKXuVzN1E"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI4MzE2NDIsImV4cCI6MTcxMjk3NTY0Mn0.EaM7eUd1PnUgobuis3dUucJEueeHBTOoN-NdTAwcjX8"
+            }
+        },
+        {
+            "_id": "a8b2a2f7-8fa1-4968-878f-b8588294556e",
+            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
+            "name": "GET ALL POSTS",
+            "url": "api-postit.up.railway.app/api/posts",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-03-10T10:03:42.320Z",
+            "modified": "2024-06-18T12:19:28.291Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI1ODg1ODksImV4cCI6MTcxMjU5OTM4OX0.kAqm_L8YrQlnWw6g9M9_OBiz6Hj0CZ3kvueskpd4tDc"
+            }
+        },
+        {
+            "_id": "8c3b8d47-e051-4ad6-83e6-b2512dcd0087",
+            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
+            "name": "GET POST BY ID",
+            "url": "api-postit.up.railway.app/api/posts/66103834c634d1951703aa86",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-03-10T10:11:41.434Z",
+            "modified": "2024-06-18T12:19:34.742Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
+        },
+        {
+            "_id": "b694a9a1-2650-463b-badf-4f6593de90f1",
+            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
+            "name": "LIKE A POST",
+            "url": "api-postit.up.railway.app/api/posts/like/66103834c634d1951703aa86",
+            "method": "PUT",
+            "sortNum": 95000,
+            "created": "2024-03-10T20:58:10.394Z",
+            "modified": "2024-06-18T12:19:40.943Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
+        },
+        {
+            "_id": "14a0d077-8538-4b23-895b-4bd801c476e2",
+            "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
+            "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
+            "name": "GET MY OWN POSTS",
+            "url": "api-postit.up.railway.app/api/posts/own",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-03-10T10:20:55.490Z",
+            "modified": "2024-06-18T12:19:47.676Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
         },
         {
             "_id": "c1386073-1b43-40ae-a0db-f9c54c8731db",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
             "name": "UPDATE POST BY ID",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts",
+            "url": "api-postit.up.railway.app/api/posts",
             "method": "PUT",
             "sortNum": 120000,
             "created": "2024-03-10T11:53:54.105Z",
-            "modified": "2024-03-20T11:38:21.591Z",
+            "modified": "2024-06-18T12:19:55.192Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"postId\": \"65f320f35ecbfb3db963b90e\",\n  \"title\": \"Hola\",\n  \"description\": \"Post de prueba\"\n}",
+                "raw": "{\n  \"postId\": \"66103834c634d1951703aa86\",\n  \"title\": \"Hola\",\n  \"description\": \"Post de prueba\"\n}",
                 "form": []
             },
-            "reqType": "put",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA2MDk0MjYsImV4cCI6MTcxMTMyOTQyNn0.ezizt6AOE55xhWNSaWSZuaYcrrcZal244T7NisX0vGg"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
         },
         {
             "_id": "c93052ba-50a9-43c1-a248-0cf367179a78",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
             "name": "DELETE POST BY ID",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/65f080bee33e7d3e2f1687bc",
+            "url": "api-postit.up.railway.app/api/posts/66103834c634d1951703aa86",
             "method": "DELETE",
             "sortNum": 130000,
             "created": "2024-03-10T12:47:14.744Z",
-            "modified": "2024-03-13T18:17:34.684Z",
+            "modified": "2024-06-18T12:20:02.608Z",
             "headers": [],
-            "params": [],
-            "reqType": "del",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTAzMTc4MDAsImV4cCI6MTcxMTAzNzgwMH0.qepIJzkDpeuCNubDjiemPaMaAPENB37_M7DXTALTn3Y"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
         },
         {
             "_id": "0a68bc64-a0cd-496c-ad69-47854092fe8c",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
             "name": "FOLLOW USER",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/follow/65f320f15ecbfb3db963b8e",
+            "url": "api-postit.up.railway.app/api/users/follow/65f00ff9a58ed6fa7fc8d44b",
             "method": "PUT",
             "sortNum": 140000,
             "created": "2024-03-19T11:29:42.762Z",
-            "modified": "2024-03-20T08:37:26.664Z",
+            "modified": "2024-06-18T12:18:51.091Z",
             "headers": [],
-            "params": [],
-            "reqType": "put",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYzMjBmMTVlY2JmYjNkYjk2M2I4ZTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTA5MjI1NDUsImV4cCI6MTcxMDkzMzM0NX0.Akn8UTy-ZmDUiFVdPJCnFsisWOeH5iQtMiOt1SKw474"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTIzMjY0NjEsImV4cCI6MTcxMjMzNzI2MX0.pHIMUjVWx1srdFIeLa5FsXh8U6SYRDJFCA4Y3KsVnqA"
+            }
         },
         {
             "_id": "b5a8f663-6464-4a89-b5f4-b481d3ab2d70",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "4e632e14-02ff-4b24-bafb-4046cf98f890",
             "name": "UPDATE ROLE",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/users/65f00ff9a58ed6fa7fc8d44b/role",
+            "url": "api-postit.up.railway.app/api/users/65f00ff9a58ed6fa7fc8d44b/role",
             "method": "PUT",
             "sortNum": 150000,
             "created": "2024-03-19T12:30:53.223Z",
-            "modified": "2024-03-20T11:36:50.410Z",
+            "modified": "2024-06-18T12:19:01.375Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n\"role\": \"admin\"\n}",
                 "form": []
             },
-            "reqType": "put",
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NDczOTYsImV4cCI6MTcxMTU2NzM5Nn0.UhdYo0wKQgyOzEDzpajYSzL0uCUG8ZX2DmhroJVdVA4"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTIzMjY0NjEsImV4cCI6MTcxMjMzNzI2MX0.pHIMUjVWx1srdFIeLa5FsXh8U6SYRDJFCA4Y3KsVnqA"
+            }
         },
         {
             "_id": "9ddf1a76-512a-4cb7-8fb6-f07aa8bb2e88",
             "colId": "5a5c5094-1368-4fbf-a49d-6bf1e4a6391b",
             "containerId": "df6c3bce-8204-4a87-978f-99a6bd3ceab1",
             "name": "SHOW TIMELINE",
-            "url": "https://api-backend-rrss-dev-hhmf.1.ie-1.fl0.io/api/posts/timeline",
+            "url": "api-postit.up.railway.app/api/posts/timeline",
             "method": "GET",
             "sortNum": 160000,
             "created": "2024-03-19T14:34:36.792Z",
-            "modified": "2024-03-19T14:35:09.556Z",
+            "modified": "2024-06-18T12:20:08.874Z",
             "headers": [],
-            "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MTA4NTg3MzMsImV4cCI6MTcxMDg2OTUzM30.OjoNeDensCfBe-u-Bl8ttvSOI8UKMv4vrgODP-VD0WM"
-            },
-            "tests": []
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYwMGZmZWE1OGVkNmZhN2ZjOGQ0NGQiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJhdXRob3JGaXJzdE5hbWUiOiJzdXBlciIsImF1dGhvckxhc3ROYW1lIjoiYWRtaW5vIiwiaWF0IjoxNzEyMzM4OTg1LCJleHAiOjE3MTIzNDk3ODV9.sqUACphr23Hc2klUwqkuoBlmIvakytf6ySLX9OdEhT4"
+            }
         }
-    ]
+    ],
+    "ref": "yTM5vvi5R5XTVgKnUfBnEtVEUfDwNHmhB9v69dOl92GDPK5jdVYxHUM33d5mIRx0OLSrmulhfCuD8soeuTWNGw"
 }
